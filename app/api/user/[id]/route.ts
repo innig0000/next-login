@@ -6,15 +6,11 @@ export async function GET(
     { params }: { params: { id: string } },
 ) {
     const accessToken = request.headers.get('authorization')
-    console.log(accessToken);
     if (!accessToken || !verifyJwt(accessToken)) {
-
         return new Response(JSON.stringify({error: 'No Authorization'}), {
             status: 401,
         })
     } else {
-
-    console.log(params)
 
     const id = Number(params.id)
 

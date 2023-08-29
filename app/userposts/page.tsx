@@ -33,7 +33,7 @@ function UserPosts() {
     }
 
     return (
-        <div>
+        <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
             <div>
                 <ul>
                     {data.map((item) => (

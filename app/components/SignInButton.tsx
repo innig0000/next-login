@@ -15,11 +15,13 @@ function SignInButton() {
                         {session.user.name}님이 쓴 글
                     </button>
                 </Link>
+                <Link href="/posting">
                 <button
                     className="px-12 py-4 border rounded-xl bg-green-300"
                 >
                     새로운 글 작성하기
                 </button>
+                </Link>
             <button
                 className="px-12 py-4 border rounded-xl bg-red-300"
                 onClick={() => signOut()}

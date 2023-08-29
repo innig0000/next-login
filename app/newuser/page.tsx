@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import Link from "next/link";
 
 function NewUser() {
-    const [data, setData] = useState({}); // 입력 데이터 상태
+    const [data, setData] = useState({});
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,7 +31,6 @@ function NewUser() {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setData((prevData) => ({ ...prevData, [name]: value }));
-        console.debug(data);
     };
 
     return (
