@@ -18,18 +18,19 @@ export async function GET(
 
     const id = Number(params.id)
 
-    const userPosts = await prisma.post.findMany({
-        where: {
-            authorId: id,
-        },
-        include: {
-            author: {
-                select: {
-                    email: true,
-                    name: true,
+        const userPosts = await prisma.post.findMany({
+            where: {
+                authorId: id,
+            },
+            include: {
+                author: {
+                    select: {
+                        email: true,
+                        name: true,
+                    },
                 },
             },
-        },
-    })
-    return new Response(JSON.stringify(userPosts))
+        })
+        return new Response(JSON.stringify(userPosts))
+    }
 }
