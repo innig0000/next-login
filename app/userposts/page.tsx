@@ -34,13 +34,13 @@ function UserPosts() {
 
     return (
         <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
-            <h1 className='text-4xl font-semibold'>내가 쓴 글</h1>
+            <h1 className='text-4xl font-semibold'>{session.user.name}님이 쓴 글</h1>
             <table className="table table-dark">
                 <thead>
                 <tr>
-                    <th style={{width: "15px"}}>#</th>
-                    <th style={{width: "50px"}}>Author</th>
-                    <th style={{width: "200px"}}>Title</th>
+                    <th style={{width: "3%"}}>#</th>
+                    <th style={{width: "10%"}}>Author</th>
+                    <th style={{width: "20%"}}>Title</th>
                     <th>Content</th>
                 </tr>
                 </thead>

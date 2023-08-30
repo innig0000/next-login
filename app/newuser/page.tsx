@@ -1,15 +1,48 @@
 'use client'
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Link from "next/link";
 
 function NewUser() {
     const [data, setData] = useState({});
+    const [isEmailTaken, setIsEmailTaken] = useState(false);
+    const [emailChecked, setEmailChecked] = useState(false);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        try {
+        if (!isEmailTaken && emailChecked) {
+                const response = await fetch('/api/user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (response.ok) {
+                    console.log('POST request successful');
+                    alert("계정이 성공적으로 생성되었습니다!")
+                }
+        } else {
+                console.error('POST request failed');
+                alert("계정 생성에 실패하였습니다. 이메일 중복체크와 비밀번호를 확인바랍니다.")
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setData((prevData) => ({ ...prevData, [name]: value }));
+        setIsEmailTaken(false);
+        setEmailChecked(false);
+    };
+
+    const handleCheckEmail = async () => {
 
         try {
-            const response = await fetch('/api/user', {
+            const response = await fetch('/api/check-email',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -17,20 +50,12 @@ function NewUser() {
                 body: JSON.stringify(data),
             });
 
-            if (response.ok) {
-                console.log('POST request successful');
-                alert("계정이 성공적으로 생성되었습니다!")
-            } else {
-                console.error('POST request failed');
-            }
+            const checkData = await response.json();
+            setIsEmailTaken(checkData.isEmailTaken);
+            setEmailChecked(true);
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error checking email:', error);
         }
-    };
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setData((prevData) => ({ ...prevData, [name]: value }));
     };
 
     return (
@@ -46,7 +71,7 @@ function NewUser() {
             </label>
             <div className='mt-1'>
             <input
-                type="text"
+                type="name"
                 name="name"
                 placeholder="Name"
                 onChange={handleInputChange}
@@ -63,12 +88,21 @@ function NewUser() {
             </label>
             <div className='mt-4'>
             <input
-                type="text"
+                type="email"
                 name="email"
                 placeholder="Email"
                 onChange={handleInputChange}
-                className='mt-2 block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
+                className='flex-grow rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
             />
+                <button
+                    type="button"
+                    onClick={handleCheckEmail}
+                    className='ml-2 rounded-md bg-grey px-4 py-2 text-white transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
+                >
+                    중복 체크
+                </button>
+                {emailChecked && !isEmailTaken && (<p className="text-green-500">사용 가능한 이메일입니다.</p>)}
+                {emailChecked && isEmailTaken && (<p className="text-red-500 ml-2">이미 사용 중인 이메일입니다.</p>)}
             </div>
             </div>
             <div style={{padding: "10px"}}>
@@ -80,7 +114,7 @@ function NewUser() {
             </label>
             <div className='mt-1'>
             <input
-                type="text"
+                type="password"
                 name="password"
                 placeholder="Password"
                 onChange={handleInputChange}

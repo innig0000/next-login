@@ -88,3 +88,7 @@ th {
 .table-responsive {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch; }
+
+.bg-grey {
+  background-color: #6c757d;
+}
