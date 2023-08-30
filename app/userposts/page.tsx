@@ -34,18 +34,28 @@ function UserPosts() {
 
     return (
         <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
-            <div>
-                <ul>
-                    {data.map((item) => (
-                        <li key={item.id}>
-                            <p>text ID: {item.id}</p>
-                            <p>Author: {item.author.name}</p>
-                            <p>Title: {item.title}</p>
-                            <p>content: {item.content}</p>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            <h1 className='text-4xl font-semibold'>내가 쓴 글</h1>
+            <table className="table table-dark">
+                <thead>
+                <tr>
+                    <th style={{width: "15px"}}>#</th>
+                    <th style={{width: "50px"}}>Author</th>
+                    <th style={{width: "200px"}}>Title</th>
+                    <th>Content</th>
+                </tr>
+                </thead>
+                <tbody>
+                {data.map((item) => (
+                    <tr key={item.id}>
+                        <td>{item.id}</td>
+                        <td>{item.author.name}</td>
+                        <td>{item.title}</td>
+                        <td>{item.content}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+
           <Link href="/">
              <button className="px-12 py-4 border rounded-xl bg-blue-300">
                  홈 화면으로

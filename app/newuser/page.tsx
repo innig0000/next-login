@@ -35,7 +35,7 @@ function NewUser() {
 
     return (
         <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
-            <h1 className='text-4xl font-semibold'>새로운 사용자 계정 생성하기</h1>
+            <h1 className='text-4xl font-semibold'>회원 가입</h1>
         <form onSubmit={handleSubmit}>
             <div style={{padding: "10px"}}>
             <label
