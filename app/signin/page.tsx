@@ -1,6 +1,6 @@
 'use client'
 import React, {useRef, useState} from 'react'
-import { signIn } from 'next-auth/react'
+import {signIn} from 'next-auth/react'
 import Link from "next/link";
 
 function Login() {
@@ -89,12 +89,12 @@ function Login() {
                         Log In
                     </button>
                 </div>
-                <Link href="/">
+                <Link href="/newuser">
                     <div style={{padding: "10px", alignItems: "center", display: "flex", justifyContent: "center"}}>
                         <div className='mt-6'>
-                    <button className="px-12 py-4 border rounded-xl bg-blue-300">
-                        홈 화면으로
-                    </button>
+                            <button className="px-12 py-4 border rounded-xl bg-yellow-300">
+                                회원가입
+                            </button>
                         </div>
                     </div>
                 </Link>

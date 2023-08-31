@@ -6,6 +6,7 @@ function NewUser() {
     const [data, setData] = useState({});
     const [isEmailTaken, setIsEmailTaken] = useState(false);
     const [emailChecked, setEmailChecked] = useState(false);
+    const [emailTrueChecked, setEmailTrueChecked] = useState(false);
 
 
     const handleSubmit = async (e) => {
@@ -40,6 +41,14 @@ function NewUser() {
     };
 
     const handleCheckEmail = async () => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const isMailTrue = emailRegex.test(data.email);
+        if (!isMailTrue) {
+            alert("올바른 이메일 주소를 입력하세요")
+            setEmailTrueChecked(false);
+        } else {
+            setEmailTrueChecked(true);
+        }
 
         try {
             const response = await fetch('/api/check-email',{
@@ -101,7 +110,7 @@ function NewUser() {
                 >
                     중복 체크
                 </button>
-                {emailChecked && !isEmailTaken && (<p className="text-green-500">사용 가능한 이메일입니다.</p>)}
+                {emailChecked && !isEmailTaken && emailTrueChecked && (<p className="text-green-500">사용 가능한 이메일 입니다.</p>)}
                 {emailChecked && isEmailTaken && (<p className="text-red-500 ml-2">이미 사용 중인 이메일입니다.</p>)}
             </div>
             </div>
@@ -132,11 +141,12 @@ function NewUser() {
             </button>
             </div>
             </div>
-            <Link href="/signin">
+
+            <Link href="/">
                 <div style={{padding: "10px", alignItems: "center", display: "flex", justifyContent: "center"}}>
                     <div className='mt-6'>
                         <button className="w-full px-12 py-4 border rounded-xl bg-blue-300">
-                            로그인 페이지로
+                            홈 화면으로
                         </button>
                     </div>
                 </div>
