@@ -22,8 +22,15 @@ function SignInButton() {
                     새로운 글 작성하기
                 </button>
                 </Link>
+                <Link href="/mypage">
+                    <button
+                        className="px-12 py-4 border rounded-xl bg-red-300"
+                    >
+                        내 정보 보기
+                    </button>
+                </Link>
             <button
-                className="px-12 py-4 border rounded-xl bg-red-300"
+                className="px-12 py-4 border rounded-xl bg-blue-300"
                 onClick={() => signOut()}
             >
                 {session.user.name}님 Log Out
@@ -35,7 +42,7 @@ function SignInButton() {
     return (
         <div className='space-x-10'>
         <button
-            className="px-12 py-4 border rounded-xl bg-yellow-300"
+            className="px-12 py-4 border rounded-xl bg-blue-300"
             onClick={() => signIn()}
         >
             LogIn
@@ -43,7 +50,7 @@ function SignInButton() {
 
         <Link href="/newuser">
             <button
-        className="px-12 py-4 border rounded-xl bg-blue-300"
+        className="px-12 py-4 border rounded-xl bg-yellow-300"
     >
             Register
        </button>

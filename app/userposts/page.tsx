@@ -35,6 +35,7 @@ function UserPosts() {
     return (
         <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
             <h1 className='text-4xl font-semibold'>{session.user.name}님이 쓴 글</h1>
+            <div>총 글의 개수: {data.length}개</div>
             <table className="table table-dark">
                 <thead>
                 <tr>

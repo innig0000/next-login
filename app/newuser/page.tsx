@@ -11,7 +11,7 @@ function NewUser() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-        if (!isEmailTaken && emailChecked) {
+        if (!isEmailTaken && emailChecked && data.name) {
                 const response = await fetch('/api/user', {
                     method: 'POST',
                     headers: {
@@ -26,7 +26,7 @@ function NewUser() {
                 }
         } else {
                 console.error('POST request failed');
-                alert("계정 생성에 실패하였습니다. 이메일 중복체크와 비밀번호를 확인바랍니다.")
+                alert("계정 생성에 실패하였습니다. 모든 필수 항목을 입력하고, 이메일 중복 체크도 확인해 주세요.")
             }
         } catch (error) {
             console.error('Error:', error);
