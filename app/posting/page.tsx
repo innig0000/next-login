@@ -85,12 +85,9 @@ const Posting = () => {
                 </div>
             </div>
             <Link href="/">
-                <div style={{padding: "10px"}}>
+                <div style={{padding: "10px", alignItems: "center", display: "flex", justifyContent: "center"}}>
                     <div className='mt-6'>
-                        <button
-                            type="home"
-                            className='w-full transform rounded-md bg-yellow-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
-                        >
+                        <button className="px-12 py-4 border rounded-xl bg-blue-300">
                             홈 화면으로
                         </button>
                     </div>
