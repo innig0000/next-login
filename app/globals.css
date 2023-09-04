@@ -92,3 +92,70 @@ th {
 .bg-grey {
   background-color: #6c757d;
 }
+
+.link {
+  position: relative;
+}
+
+.link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* 원하는 밑줄 높이 조절 */
+  width: 100%;
+  height: 2px; /* 밑줄의 높이 */
+  background-color: white; /* 밑줄 색상 */
+  transform: scaleX(0); /* 처음에는 밑줄을 보이지 않게 함 */
+  transform-origin: right;
+  transition: transform 0.2s ease-in-out; /* 밑줄 변화에 애니메이션 적용 */
+}
+
+.link:hover::before {
+  transform: scaleX(1); /* 호버 시 밑줄 표시 */
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: black;
+  color: white;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-list li {
+  margin-right: 1rem;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: white;
+}
+
+.auth {
+  display: flex;
+  gap: 1rem;
+}
+
+.login-button, .signup-button, .logout-button, .mypage-button {
+  background-color: lightblue;
+  color: rebeccapurple;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-button:hover, .signup-button:hover {
+  background-color: lightpink;
+}

@@ -1,5 +1,6 @@
 'use client'
 import React, {useEffect, useState} from "react";
+import Top from '../components/Top';
 import Link from "next/link";
 
 function NewUser() {
@@ -69,6 +70,7 @@ function NewUser() {
 
     return (
         <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
+            <Top/>
             <h1 className='text-4xl font-semibold'>회원 가입</h1>
         <form onSubmit={handleSubmit}>
             <div style={{padding: "10px"}}>
@@ -140,17 +142,16 @@ function NewUser() {
                 Submit
             </button>
             </div>
-            </div>
-
-            <Link href="/">
-                <div style={{padding: "10px", alignItems: "center", display: "flex", justifyContent: "center"}}>
-                    <div className='mt-6'>
-                        <button className="w-full px-12 py-4 border rounded-xl bg-blue-300">
-                            홈 화면으로
-                        </button>
+                <Link href="/signin">
+                    <div style={{padding: "10px", alignItems: "center", display: "flex", justifyContent: "center"}}>
+                        <div className='mt-6'>
+                            <button className="w-full px-12 py-4 border rounded-xl bg-yellow-300">
+                                로그인 화면으로
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </Link>
+                </Link>
+            </div>
         </form>
         </main>
     );

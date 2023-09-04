@@ -1,7 +1,8 @@
 'use client'
-import React, {useRef, useState} from 'react'
+import React, {useRef} from 'react'
 import {signIn} from 'next-auth/react'
 import Link from "next/link";
+import Top from "@/app/components/Top";
 
 function Login() {
     const emailRef = useRef(null)
@@ -35,6 +36,7 @@ function Login() {
 
     return (
         <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
+            <Top/>
             <h1 className='text-4xl font-semibold'>Login</h1>
             <div>
                 <div>
@@ -89,15 +91,25 @@ function Login() {
                         Log In
                     </button>
                 </div>
-                <Link href="/newuser">
-                    <div style={{padding: "10px", alignItems: "center", display: "flex", justifyContent: "center"}}>
-                        <div className='mt-6'>
-                            <button className="px-12 py-4 border rounded-xl bg-yellow-300">
-                                회원가입
-                            </button>
+                <div className='flex space-x-4'>
+                <Link href="/find-email">
+                        <div className='mt-6 link '>
+                            이메일 주소 찾기
                         </div>
-                    </div>
                 </Link>
+                    <span className='mt-6'>|</span>
+                <Link href="/reset-password">
+                        <div className='mt-6 link'>
+                            비밀번호 찾기
+                        </div>
+                </Link>
+                    <span className='mt-6'>|</span>
+                <Link href="/newuser">
+                        <div className='mt-6 link'>
+                             회원가입
+                        </div>
+                </Link>
+                </div>
             </div>
         </main>
     )

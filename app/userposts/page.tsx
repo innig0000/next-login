@@ -2,6 +2,7 @@
 import React, {useEffect, useState} from "react";
 import {useSession} from "next-auth/react";
 import Link from "next/link";
+import Top from "@/app/components/Top";
 
 function UserPosts() {
     const [data, setData] = useState([]);
@@ -33,6 +34,8 @@ function UserPosts() {
     }
 
     return (
+        <div>
+            <Top/>
         <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
             <h1 className='text-4xl font-semibold'>{session.user.name}님이 쓴 글</h1>
             <div>총 글의 개수: {data.length}개</div>
@@ -56,12 +59,7 @@ function UserPosts() {
                 ))}
                 </tbody>
             </table>
-
-          <Link href="/">
-             <button className="px-12 py-4 border rounded-xl bg-blue-300">
-                 홈 화면으로
-             </button>
-         </Link>
+        </div>
         </div>
     );
 }

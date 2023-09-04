@@ -22,19 +22,6 @@ function SignInButton() {
                     새로운 글 작성하기
                 </button>
                 </Link>
-                <Link href="/mypage">
-                    <button
-                        className="px-12 py-4 border rounded-xl bg-red-300"
-                    >
-                        내 정보 보기
-                    </button>
-                </Link>
-            <button
-                className="px-12 py-4 border rounded-xl bg-blue-300"
-                onClick={() => signOut()}
-            >
-                {session.user.name}님 Log Out
-            </button>
             </div>
         );
     } //if ...

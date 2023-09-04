@@ -2,6 +2,7 @@
 import React, {useState} from "react";
 import Link from "next/link";
 import {useSession} from "next-auth/react";
+import Top from "@/app/components/Top";
 
 const Posting = () => {
     const [data, setData] = useState({});
@@ -37,6 +38,7 @@ const Posting = () => {
     };
 
     return <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
+        <Top/>
         <h1 className='text-4xl font-semibold'>새로운 글 작성하기</h1>
         <form onSubmit={handleSubmit}>
             <div style={{padding: "10px"}}>
@@ -84,15 +86,6 @@ const Posting = () => {
                     </button>
                 </div>
             </div>
-            <Link href="/">
-                <div style={{padding: "10px", alignItems: "center", display: "flex", justifyContent: "center"}}>
-                    <div className='mt-6'>
-                        <button className="px-12 py-4 border rounded-xl bg-blue-300">
-                            홈 화면으로
-                        </button>
-                    </div>
-                </div>
-            </Link>
         </form>
     </main>
 }

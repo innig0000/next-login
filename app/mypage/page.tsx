@@ -2,6 +2,7 @@
 import React, {useEffect} from "react";
 import Link from "next/link";
 import {useSession} from "next-auth/react";
+import Top from "../components/Top";
 
 const MyPage = () => {
     const { data: session } = useSession();
@@ -11,9 +12,11 @@ const MyPage = () => {
 
 
     return (
+        <div>
+        <Top/>
     <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
         <div class="col-lg-4">
-            <div>
+
 
                 <div class="table-responsive">
                     <table className="table table-centered border mb-0">
@@ -38,15 +41,10 @@ const MyPage = () => {
                         </tbody>
                     </table>
                 </div>
-            </div>
 
         </div>
-    <Link href="/">
-        <button className="px-12 py-4 border rounded-xl bg-blue-300">
-            홈 화면으로
-        </button>
-    </Link>
     </div>
+        </div>
     )
 }
 
