@@ -98,7 +98,7 @@ function Login() {
                         </div>
                 </Link>
                     <span className='mt-6'>|</span>
-                <Link href="/reset-password">
+                <Link href="/password-reset">
                         <div className='mt-6 link'>
                             비밀번호 찾기
                         </div>
