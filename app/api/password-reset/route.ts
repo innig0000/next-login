@@ -17,7 +17,10 @@ export async function POST(request: Request) {
             email: body.email,
         },
     })
-    console.debug(user.name);
+
+    if (user === null) {
+        return new Response(JSON.stringify(user));
+    }
 
     function generateTemporaryPassword() {
         const length = 10; // 임시 비밀번호 길이
@@ -74,5 +77,5 @@ export async function POST(request: Request) {
         console.log('사용자 이름과 이메일 주소를 알맞게 입력하세요.')
     }
 
-    return new Response(JSON.stringify(user));
+    return new Response(JSON.stringify(user.name));
 }

@@ -18,10 +18,10 @@ const PassWordReset = () => {
             });
             const Data = await response.json();
             console.debug(Data)
-            if(response.ok && data.name === Data.name) {
+            if(response.ok && data.name === Data) {
                 console.log('POST request successful');
                 alert('이메일로 임시 비밀번호를 전송하였습니다.')
-            } else {
+            } else if (Data === null || !Data.name) {
                 console.error('POST request failed');
                 alert('정확한 이름과 이메일을 입력하세요.')
             }
