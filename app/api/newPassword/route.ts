@@ -29,6 +29,10 @@ export async function POST(request: Request) {
         return new Response(JSON.stringify({error: '새 비밀번호와 확인 비밀번호가 일치하지 않습니다.'}), {status: 400});
     }
 
+    if (body.password === body.newPassword) {
+        return new Response(JSON.stringify({error: '기존 비밀번호와 다른 새로운 비밀번호를 입력하세요.'}), {status: 400});
+    }
+
             await prisma.user.update({
                 where: {
                     email: user.email,
