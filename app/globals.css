@@ -156,6 +156,6 @@ th {
   cursor: pointer;
 }
 
-.login-button:hover, .signup-button:hover {
+.login-button:hover, .signup-button:hover, .logout-button:hover, .mypage-button:hover {
   background-color: lightpink;
 }
