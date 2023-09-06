@@ -28,7 +28,7 @@ export async function GET(
 
             },
         })
-        console.debug(userPosts);
+
         return new Response(JSON.stringify(userPosts))
     }
 }

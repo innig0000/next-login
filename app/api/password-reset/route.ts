@@ -10,7 +10,6 @@ interface RequestBody {
 
 export async function POST(request: Request) {
     const body: RequestBody = await request.json()
-    console.debug(body.email);
 
     const user = await prisma.user.findFirst({
         where: {

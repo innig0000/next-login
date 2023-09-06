@@ -7,7 +7,7 @@ const PassWordReset = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-      console.debug(data);
+
         try {
             const response = await fetch('api/password-reset', {
                 method: 'POST',
@@ -17,7 +17,6 @@ const PassWordReset = () => {
                 body: JSON.stringify(data),
             });
             const Data = await response.json();
-            console.debug(Data)
             if(response.ok && data.name === Data) {
                 console.log('POST request successful');
                 alert('이메일로 임시 비밀번호를 전송하였습니다.')

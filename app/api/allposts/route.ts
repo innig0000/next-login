@@ -12,7 +12,7 @@ export async function GET(request: Request) {
                         }
                 }
         });
-        console.debug(allPosts);
+
         return new Response(JSON.stringify(allPosts));
 
 }

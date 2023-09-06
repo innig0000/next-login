@@ -22,7 +22,7 @@ function UserPosts() {
                 },
             });
             const data = await response.json();
-            console.debug(data);
+
             if (response.ok) {
                 console.log('GET request successful');
                 setData(data);
