@@ -16,17 +16,23 @@ const Top = () => {
             </nav>
             <div className="auth">
                 <Link href="/">
-                    <button className="login-button">홈</button>
+                    <button className="menu-button">홈</button>
                 </Link>
-                    <button
-                        className="logout-button"
+                <Link href="/posting">
+                    <button className="menu-button">새 글 쓰기</button>
+                </Link>
+                <Link href="/userposts">
+                    <button className="menu-button">{session.user.name}님이 쓴 글</button>
+                </Link>
+                <Link href="/mypage">
+                       <button className="menu-button">마이페이지</button>
+                </Link>
+                <button
+                    className="menu-button"
                     onClick={() => signOut()}
-                    >
-                        로그아웃
-                    </button>
-                    <Link href="/mypage">
-                       <button className="mypage-button">마이페이지</button>
-                    </Link>
+                >
+                    로그아웃
+                </button>
             </div>
         </header>
                 );
@@ -40,15 +46,15 @@ const Top = () => {
                     </nav>
                     <div className="auth">
                         <Link href="/">
-                            <button className="login-button">홈</button>
+                            <button className="menu-button">홈</button>
                         </Link>
 
 
                         <Link href="/signin">
-                    <button className="login-button">로그인</button>
+                    <button className="menu-button">로그인</button>
                 </Link>
                 <Link href="/newuser">
-                    <button className="signup-button">회원가입</button>
+                    <button className="menu-button">회원가입</button>
                 </Link>
             </div>
         </header>

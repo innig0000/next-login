@@ -1,5 +1,5 @@
 'use client'
-import {signIn, signOut, useSession} from 'next-auth/react'
+import {signIn, useSession} from 'next-auth/react'
 import React from 'react'
 import Link from "next/link";
 
@@ -10,6 +10,11 @@ function SignInButton() {
     if (session && session.user) {
         return (
             <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
+                <Link href="/">
+                    <button className="px-12 py-4 border rounded-xl bg-pink-300">
+                        모든 글 보기
+                    </button>
+                </Link>
                 <Link href="/userposts">
                     <button className="px-12 py-4 border rounded-xl bg-purple-300">
                         {session.user.name}님이 쓴 글

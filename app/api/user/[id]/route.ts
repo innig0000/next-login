@@ -25,8 +25,10 @@ export async function GET(
                         name: true,
                     },
                 },
+
             },
         })
+        console.debug(userPosts);
         return new Response(JSON.stringify(userPosts))
     }
 }

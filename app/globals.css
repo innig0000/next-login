@@ -43,7 +43,9 @@ td,
 th {
   border-color: inherit;
   border-style: solid;
-  border-width: 1px; }
+  border-width: 1px;
+  text-align: center;
+  vertical-align: middle; }
 
 
 .table {
@@ -147,8 +149,8 @@ th {
   gap: 1rem;
 }
 
-.login-button, .signup-button, .logout-button, .mypage-button {
-  background-color: lightblue;
+.menu-button {
+  background-color: lightsteelblue;
   color: rebeccapurple;
   border: none;
   padding: 0.5rem 1rem;
@@ -156,6 +158,6 @@ th {
   cursor: pointer;
 }
 
-.login-button:hover, .signup-button:hover, .logout-button:hover, .mypage-button:hover {
+.menu-button:hover {
   background-color: lightpink;
 }

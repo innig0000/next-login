@@ -22,6 +22,7 @@ function UserPosts() {
                 },
             });
             const data = await response.json();
+            console.debug(data);
             if (response.ok) {
                 console.log('GET request successful');
                 setData(data);
@@ -42,19 +43,21 @@ function UserPosts() {
             <table className="table table-dark">
                 <thead>
                 <tr>
-                    <th style={{width: "3%"}}>#</th>
-                    <th style={{width: "10%"}}>Author</th>
-                    <th style={{width: "20%"}}>Title</th>
-                    <th>Content</th>
+                    <th style={{width: "5%"}}>#</th>
+                    <th>글 제목</th>
+                    <th>내용</th>
+                    <th style={{width: "15%"}}>작성자</th>
+                    <th style={{width: "15%"}}>작성일자</th>
                 </tr>
                 </thead>
                 <tbody>
                 {data.map((item) => (
                     <tr key={item.id}>
                         <td>{item.id}</td>
-                        <td>{item.author.name}</td>
                         <td>{item.title}</td>
                         <td>{item.content}</td>
+                        <td>{item.author.name}</td>
+                        <td>{item.createAt.substring(0, 10)}</td>
                     </tr>
                 ))}
                 </tbody>
