@@ -24,7 +24,7 @@ const Posts = ({ params }: { params: { id: string } }) => {
     detailPage();
     },[]);
 
-    const detailPage = async ()=>{
+    const detailPage = async () => {
         try {
             const response = await fetch(`/api/posts/${id}`, {
                 method: 'GET',
@@ -45,6 +45,29 @@ const Posts = ({ params }: { params: { id: string } }) => {
             console.error('Error:', error);
         }
     }
+
+    const deletePost = async () => {
+        try {
+            const Response = await fetch(`/api/deletePost/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': session.user.accessToken,
+                },
+            });
+
+            if (Response.ok) {
+                console.log('DELETE request successful');
+                alert('글이 성공적으로 삭제되었습니다.')
+            } else {
+                console.error('DELETE request failed');
+                alert('글 삭제가 실패하였습니다.')
+            }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
 
     return (
         <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
@@ -81,12 +104,20 @@ const Posts = ({ params }: { params: { id: string } }) => {
                     >
                         목록
                     </button>
-                {session && (
+                {session && session.user.name === data.author.name && (
+                    <div>
+                    <button
+                        className="px-12 py-4 border rounded-xl bg-yellow-300 mr-4"
+                    >
+                        수정
+                    </button>
                     <button
                     className="px-12 py-4 border rounded-xl bg-pink-300"
+                    onClick={deletePost}
                     >
                     삭제
                     </button>
+                    </div>
                 )}
                 </div>
             </div>
