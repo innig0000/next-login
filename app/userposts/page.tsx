@@ -1,8 +1,8 @@
 'use client'
 import React, {useEffect, useState} from "react";
 import {useSession} from "next-auth/react";
-import Link from "next/link";
 import Top from "@/app/components/Top";
+import Link from "next/link";
 
 function UserPosts() {
     const [data, setData] = useState([]);
@@ -45,7 +45,6 @@ function UserPosts() {
                 <tr>
                     <th style={{width: "5%"}}>#</th>
                     <th>글 제목</th>
-                    <th>내용</th>
                     <th style={{width: "15%"}}>작성자</th>
                     <th style={{width: "15%"}}>작성일자</th>
                 </tr>
@@ -54,10 +53,11 @@ function UserPosts() {
                 {data.map((item) => (
                     <tr key={item.id}>
                         <td>{item.id}</td>
-                        <td>{item.title}</td>
-                        <td>{item.content}</td>
+                        <td className="td-title">
+                            <Link href={`/posts/${item.id}`}>{item.title}</Link>
+                            </td>
                         <td>{item.author.name}</td>
-                        <td>{item.createAt.substring(0, 10)}</td>
+                        <td>{item.createdAt.substring(0, 10)}</td>
                     </tr>
                 ))}
                 </tbody>

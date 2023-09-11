@@ -1,7 +1,6 @@
 'use client'
-
-import Top from "@/app/components/Top";
 import React, {useEffect, useState} from "react";
+import Link from "next/link";
 
 const AllPost = () => {
     const [data, setData] = useState([]);
@@ -30,6 +29,7 @@ const AllPost = () => {
         }
     }
 
+
     return (
         <div>
             <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
@@ -38,21 +38,21 @@ const AllPost = () => {
                 <table className="table table-dark table-striped table-bordered">
                     <thead>
                     <tr>
-                        <th>#</th>
+                        <th style={{width: "5%"}}>#</th>
                         <th>글 제목</th>
-                        <th>내용</th>
-                        <th>작성자</th>
-                        <th>작성일자</th>
+                        <th style={{width: "15%"}}>작성자</th>
+                        <th style={{width: "15%"}}>작성일자</th>
                     </tr>
                     </thead>
                     <tbody>
                     {data.map((item) => (
                         <tr key={item.id}>
                             <td>{item.id}</td>
-                            <td>{item.title}</td>
-                            <td>{item.content}</td>
+                            <td className="td-title">
+                                <Link href={`/posts/${item.id}`}>{item.title}</Link>
+                            </td>
                             <td>{item.author.name}</td>
-                            <td>{item.createAt.substring(0, 10)}</td>
+                            <td>{item.createdAt.substring(0, 10)}</td>
                         </tr>
                     ))}
                     </tbody>
