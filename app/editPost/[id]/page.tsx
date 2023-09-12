@@ -58,6 +58,9 @@ const EditPost = ({ params }: { params: { id: string } }) => {
     };
 
     const handleEditSubmit = async () => {
+        const confirmation = window.confirm('정말로 수정하시겠습니까?');
+
+        if (confirmation){
         try {
             const response = await fetch(`/api/editPost/${id}`, {
                 method: "PUT",
@@ -70,8 +73,13 @@ const EditPost = ({ params }: { params: { id: string } }) => {
 
             if (response.ok) {
                 console.log("Edit successful");
-                detailPage();
                 alert("글 수정을 성공했습니다.")
+                setFormData({
+                    title: "",
+                    content: "",
+                });
+
+                detailPage();
             } else {
                 console.error("Edit failed");
                 alert("글 수정에 실패했습니다.")
@@ -79,7 +87,11 @@ const EditPost = ({ params }: { params: { id: string } }) => {
         } catch (error) {
             console.error("Error:", error);
         }
-    };
+    } else {
+        console.log("수정이 취소되었습니다.")
+            alert("수정이 취소되었습니다.")
+        }
+    }
 
     return (
         <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
