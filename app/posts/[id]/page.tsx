@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import Top from "@/app/components/Top";
 import {useRouter} from "next/navigation";
 import {useSession} from "next-auth/react";
+import Link from "next/link";
 
 const Posts = ({ params }: { params: { id: string } }) => {
     const [data, setData] = useState({
@@ -15,10 +16,6 @@ const Posts = ({ params }: { params: { id: string } }) => {
     const id = Number(params.id)
     const router = useRouter();
     const { data: session } = useSession();
-
-    const goBack= () => {
-        router.back();
-    };
 
     useEffect(() =>{
     detailPage();
@@ -98,25 +95,47 @@ const Posts = ({ params }: { params: { id: string } }) => {
                     <div className="post-content h-[300px]">{data.content}</div>
                 </div>
                 <div style={{ display: "flex", justifyContent: "center"}}>
-                    <button
-                        className="px-12 py-4 border rounded-xl bg-blue-300 mr-4"
-                        onClick={goBack}
-                    >
-                        목록
-                    </button>
+                    {session ?
+                        <div>
+                        <Link href="/userposts">
+                            <button
+                                className="px-12 py-4 border rounded-xl bg-orange-300 mr-4"
+                            >
+                                내 글 목록
+                            </button>
+                        </Link>
+                        <Link href="/">
+                            <button
+                                className="px-12 py-4 border rounded-xl bg-blue-300 mr-4"
+                            >
+                                전체 목록
+                            </button>
+                        </Link>
+                        </div>
+                        :
+                        <Link href="/">
+                            <button
+                                className="px-12 py-4 border rounded-xl bg-blue-300 mr-4"
+                            >
+                                전체 목록
+                            </button>
+                        </Link>
+                    }
                 {session && session.user.name === data.author.name && (
                     <div>
-                    <button
+                    <Link href={`/editPost/${id}`}><button
                         className="px-12 py-4 border rounded-xl bg-yellow-300 mr-4"
                     >
                         수정
-                    </button>
+                    </button></Link>
+                        <Link href="/userposts">
                     <button
                     className="px-12 py-4 border rounded-xl bg-pink-300"
                     onClick={deletePost}
                     >
                     삭제
                     </button>
+                        </Link>
                     </div>
                 )}
                 </div>

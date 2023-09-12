@@ -4,6 +4,7 @@ export const config = {
     matcher: [
         '/userposts/:path*',
         '/posting/:path*',
-        '/mypage/:path*'
+        '/mypage/:path*',
+        '/editPost/:path*',
     ],
 }
