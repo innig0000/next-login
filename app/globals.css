@@ -184,3 +184,31 @@ th {
   word-break: break-all;
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7); /* 배경 어두운 정도 조절 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* 모달을 다른 요소 위에 표시 */
+}
+
+.modal {
+  background: lightgoldenrodyellow;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: black;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto; /* 15% from the top and centered */
+  padding: 10px;
+  border: 1px solid #888;
+  width: 90%; /* Could be more or less, depending on screen size */
+}

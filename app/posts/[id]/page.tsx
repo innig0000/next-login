@@ -16,6 +16,7 @@ const Posts = ({ params }: { params: { id: string } }) => {
     const id = Number(params.id)
     const router = useRouter();
     const { data: session } = useSession();
+    const [isModalOpen, setModalOpen] = useState(false);
 
     useEffect(() =>{
     detailPage();
@@ -56,15 +57,52 @@ const Posts = ({ params }: { params: { id: string } }) => {
             if (Response.ok) {
                 console.log('DELETE request successful');
                 alert('글이 성공적으로 삭제되었습니다.')
+                closeModal();
+                router.push("/userposts");
             } else {
                 console.error('DELETE request failed');
-                alert('글 삭제가 실패하였습니다.')
+                alert('글 삭제를 실패하였습니다.')
             }
             } catch (error) {
                 console.error('Error:', error);
-            }
-        }
 
+        }
+    }
+// 모달 열기
+    const openModal = () => {
+        setModalOpen(true);
+    };
+
+    // 모달 닫기
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+
+    function Modal({ isOpen, onClose, children }) {
+        if (!isOpen) return null;
+
+        return (
+            <div className="modal-overlay">
+                <div className="modal">
+                    <div className="modal-content">
+                        {children}
+                        <button
+                            className="px-12 py-4 border rounded-xl bg-yellow-300 mr-4"
+                            onClick={onClose}
+                        >
+                            취소
+                        </button>
+                        <button
+                            className="px-12 py-4 border rounded-xl bg-red-300"
+                            onClick={deletePost}
+                        >
+                            삭제
+                        </button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
@@ -123,19 +161,23 @@ const Posts = ({ params }: { params: { id: string } }) => {
                     }
                 {session && session.user.name === data.author.name && (
                     <div>
+                        <div>
                     <Link href={`/editPost/${id}`}><button
                         className="px-12 py-4 border rounded-xl bg-yellow-300 mr-4"
                     >
                         수정
                     </button></Link>
-                        <Link href="/userposts">
                     <button
                     className="px-12 py-4 border rounded-xl bg-pink-300"
-                    onClick={deletePost}
+                    onClick={openModal}
                     >
                     삭제
                     </button>
-                        </Link>
+                            <Modal isOpen={isModalOpen} onClose={closeModal}>
+                                <h2>해당 글이 삭제됩니다. 정말로 삭제하시겠습니까?</h2>
+                            </Modal>
+
+                            </div>
                     </div>
                 )}
                 </div>

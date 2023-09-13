@@ -4,16 +4,20 @@ import Top from '../components/Top';
 import Link from "next/link";
 
 function NewUser() {
-    const [data, setData] = useState({});
+    const [data, setData] = useState({
+        email: "",
+        name: "",
+        password: "",
+    });
     const [isEmailTaken, setIsEmailTaken] = useState(false);
     const [emailChecked, setEmailChecked] = useState(false);
     const [emailTrueChecked, setEmailTrueChecked] = useState(false);
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         try {
-        if (!isEmailTaken && emailChecked && data.name) {
+        if (!isEmailTaken && emailChecked && data.name && data.password) {
                 const response = await fetch('/api/user', {
                     method: 'POST',
                     headers: {
@@ -26,10 +30,19 @@ function NewUser() {
                     console.log('POST request successful');
                     alert("계정이 성공적으로 생성되었습니다!")
                 }
-        } else {
+        } else if (!data.name) {
                 console.error('POST request failed');
-                alert("계정 생성에 실패하였습니다. 모든 필수 항목을 입력하고, 이메일 중복 체크도 확인해 주세요.")
-            }
+                alert("사용자 이름을 작성해 주세요.");
+        } else if (isEmailTaken || !emailChecked) {
+            console.error('POST request failed');
+            alert("이메일 중복을 체크해 주세요.");
+        } else if (!data.password) {
+            console.error('POST request failed');
+            alert("비밀번호를 입력해 주세요.");
+        } else {
+            console.error('POST request failed');
+            alert("계정 생성에 실패했습니다.")
+        }
         } catch (error) {
             console.error('Error:', error);
         }
@@ -37,8 +50,8 @@ function NewUser() {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setData((prevData) => ({ ...prevData, [name]: value }));
-        setIsEmailTaken(false);
-        setEmailChecked(false);
+       // setIsEmailTaken(false);
+      //  setEmailChecked(false);
     };
 
     const handleCheckEmail = async () => {
@@ -86,7 +99,7 @@ function NewUser() {
                 name="name"
                 placeholder="Name"
                 onChange={handleInputChange}
-                className='mt-2 block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
+                className='mt-2 block w-full rounded-md border bg-grey px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 white:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
             />
             </div>
             </div>
@@ -103,12 +116,12 @@ function NewUser() {
                 name="email"
                 placeholder="Email"
                 onChange={handleInputChange}
-                className='flex-grow rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
+                className='flex-grow rounded-md border bg-grey px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 white:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
             />
                 <button
                     type="button"
                     onClick={handleCheckEmail}
-                    className='ml-2 rounded-md bg-grey px-4 py-2 text-white transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
+                    className='ml-2 rounded-md bg-white px-4 py-2 text-black transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
                 >
                     중복 체크
                 </button>
@@ -129,7 +142,7 @@ function NewUser() {
                 name="password"
                 placeholder="Password"
                 onChange={handleInputChange}
-                className='mt-2 block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
+                className='mt-2 block w-full rounded-md border bg-grey px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 white:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
             />
             </div>
             </div>

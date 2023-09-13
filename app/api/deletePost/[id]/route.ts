@@ -13,14 +13,13 @@ export async function DELETE(
     } else {
         const id = Number(params.id)
         console.debug(id);
-        const deletePost = await prisma.post.delete({
+        const deletedPost = await prisma.post.delete({
             where: {
                 id: id,
             },
-        })
-        console.debug(deletePost);
+        });
+        console.debug(deletedPost);
 
-        return new Response(JSON.stringify(deletePost))
-
+        return new Response(JSON.stringify(deletedPost))
     }
 }

@@ -22,13 +22,13 @@ const MyPage = () => {
                 },
                 body: JSON.stringify(data),
             });
-
+            const responseData = await response.json()
             if (response.ok) {
                 console.log('POST request successful');
                 alert("비밀번호가 성공적으로 변경되었습니다.")
             } else {
                 console.error('POST request failed');
-                alert("비밀번호와 새로운 비밀번호 모두 맞게 입력하였는지 확인하세요.")
+                alert(JSON.stringify(responseData));
             }
         } catch (error) {
             console.error('Error:', error);
