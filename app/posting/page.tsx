@@ -1,12 +1,21 @@
 'use client'
 import React, {useState} from "react";
-import Link from "next/link";
 import {useSession} from "next-auth/react";
 import Top from "@/app/components/Top";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import {useRouter} from "next/navigation";
+
 
 const Posting = () => {
     const [data, setData] = useState({});
     const { data: session } = useSession();
+    const [show, setShow] = useState(false);
+    const router = useRouter();
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
@@ -21,9 +30,11 @@ const Posting = () => {
                 body: JSON.stringify(data),
             });
 
+            const PostNumber = await response.json();
+          console.debug(PostNumber);
             if (response.ok) {
                 console.log('POST request successful');
-                alert("내용이 성공적으로 제출되었습니다.")
+                router.push(`/posts/${PostNumber}`)
             } else {
                 console.error('POST request failed');
             }
@@ -78,12 +89,31 @@ const Posting = () => {
             </div>
             <div style={{padding: "10px"}}>
                 <div className='mt-6'>
-                    <button
-                        type="submit"
+                    <Button
                         className='w-full transform rounded-md bg-blue-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
+                        variant="outline-primary"
+                        onClick={handleShow}
                     >
                         Submit
-                    </button>
+                    </Button>
+
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>새로운 글 제출</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>새로운 글을 작성합니다.</Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                취소
+                            </Button>
+                            <Button
+                                type="submit"
+                                variant="primary"
+                                onClick={handleSubmit}>
+                                제출
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
                 </div>
             </div>
         </form>

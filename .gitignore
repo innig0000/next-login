@@ -33,3 +33,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/prisma/migrations/20230906004516_add_create_at/migration.sql
+/prisma/migrations/20230906040353_new_coloumn/migration.sql

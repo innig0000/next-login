@@ -4,6 +4,8 @@ import Top from "@/app/components/Top";
 import {useRouter} from "next/navigation";
 import {useSession} from "next-auth/react";
 import Link from "next/link";
+import {Button, Modal} from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Posts = ({ params }: { params: { id: string } }) => {
     const [data, setData] = useState({
@@ -16,7 +18,11 @@ const Posts = ({ params }: { params: { id: string } }) => {
     const id = Number(params.id)
     const router = useRouter();
     const { data: session } = useSession();
-    const [isModalOpen, setModalOpen] = useState(false);
+    const [show, setShow] = useState(false);
+
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(() =>{
     detailPage();
@@ -56,8 +62,7 @@ const Posts = ({ params }: { params: { id: string } }) => {
 
             if (Response.ok) {
                 console.log('DELETE request successful');
-                alert('글이 성공적으로 삭제되었습니다.')
-                closeModal();
+               // alert('글이 성공적으로 삭제되었습니다.')
                 router.push("/userposts");
             } else {
                 console.error('DELETE request failed');
@@ -68,41 +73,7 @@ const Posts = ({ params }: { params: { id: string } }) => {
 
         }
     }
-// 모달 열기
-    const openModal = () => {
-        setModalOpen(true);
-    };
 
-    // 모달 닫기
-    const closeModal = () => {
-        setModalOpen(false);
-    };
-
-    function Modal({ isOpen, onClose, children }) {
-        if (!isOpen) return null;
-
-        return (
-            <div className="modal-overlay">
-                <div className="modal">
-                    <div className="modal-content">
-                        {children}
-                        <button
-                            className="px-12 py-4 border rounded-xl bg-yellow-300 mr-4"
-                            onClick={onClose}
-                        >
-                            취소
-                        </button>
-                        <button
-                            className="px-12 py-4 border rounded-xl bg-red-300"
-                            onClick={deletePost}
-                        >
-                            삭제
-                        </button>
-                    </div>
-                </div>
-            </div>
-        );
-    }
 
     return (
         <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
@@ -136,45 +107,50 @@ const Posts = ({ params }: { params: { id: string } }) => {
                     {session ?
                         <div>
                         <Link href="/userposts">
-                            <button
-                                className="px-12 py-4 border rounded-xl bg-orange-300 mr-4"
-                            >
+                            <Button variant="outline-secondary" className="mx-2">
                                 내 글 목록
-                            </button>
+                            </Button>
                         </Link>
                         <Link href="/">
-                            <button
-                                className="px-12 py-4 border rounded-xl bg-blue-300 mr-4"
-                            >
+                            <Button variant="outline-secondary" className="mx-2">
                                 전체 목록
-                            </button>
+                            </Button>
                         </Link>
                         </div>
                         :
                         <Link href="/">
-                            <button
-                                className="px-12 py-4 border rounded-xl bg-blue-300 mr-4"
-                            >
+                            <Button variant="outline-secondary" className="mx-2">
                                 전체 목록
-                            </button>
+                            </Button>
                         </Link>
                     }
                 {session && session.user.name === data.author.name && (
                     <div>
                         <div>
-                    <Link href={`/editPost/${id}`}><button
-                        className="px-12 py-4 border rounded-xl bg-yellow-300 mr-4"
-                    >
+                    <Link href={`/editPost/${id}`}>
+                        <Button variant="outline-warning" className="mx-2">
                         수정
-                    </button></Link>
-                    <button
-                    className="px-12 py-4 border rounded-xl bg-pink-300"
-                    onClick={openModal}
-                    >
+                    </Button>
+                    </Link>
+                    <Button variant="outline-danger" className="mx-2" onClick={handleShow}>
                     삭제
-                    </button>
-                            <Modal isOpen={isModalOpen} onClose={closeModal}>
-                                <h2>해당 글이 삭제됩니다. 정말로 삭제하시겠습니까?</h2>
+                    </Button>
+                            <Modal show={show} onHide={handleClose}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>글이 삭제됩니다.</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>정말로 삭제하시겠습니까?</Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={handleClose}>
+                                        취소
+                                    </Button>
+                                    <Button
+                                        type="submit"
+                                        variant="danger"
+                                        onClick={deletePost}>
+                                        삭제
+                                    </Button>
+                                </Modal.Footer>
                             </Modal>
 
                             </div>

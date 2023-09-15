@@ -1,6 +1,7 @@
 'use client'
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
+import {Table} from "react-bootstrap";
 
 const AllPost = () => {
     const [data, setData] = useState([]);
@@ -29,13 +30,12 @@ const AllPost = () => {
         }
     }
 
-
     return (
         <div>
             <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
                 <h1 className='text-4xl font-semibold'>모든 게시글</h1>
                 <div>총 글의 개수: {data.length}개</div>
-                <table className="table table-dark table-striped table-bordered">
+                <Table className="table table-striped table-bordered">
                     <thead>
                     <tr>
                         <th style={{width: "5%"}}>#</th>
@@ -56,7 +56,7 @@ const AllPost = () => {
                         </tr>
                     ))}
                     </tbody>
-                </table>
+                </Table>
             </div>
         </div>
     )

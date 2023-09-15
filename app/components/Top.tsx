@@ -1,11 +1,11 @@
 'use client'
 import Link from "next/link";
 import {signOut, useSession} from "next-auth/react";
+import {Button} from "react-bootstrap";
 
 const Top = () => {
 
     const { data: session } = useSession();
-
 
     if (session && session.user) {
     return (
@@ -16,23 +16,23 @@ const Top = () => {
             </nav>
             <div className="auth">
                 <Link href="/">
-                    <button className="menu-button">홈</button>
+                    <Button variant="outline-info">홈</Button>
                 </Link>
                 <Link href="/posting">
-                    <button className="menu-button">새 글 쓰기</button>
+                    <Button variant="outline-secondary">새 글 쓰기</Button>
                 </Link>
                 <Link href="/userposts">
-                    <button className="menu-button">{session.user.name}님이 쓴 글</button>
+                    <Button variant="outline-secondary">{session.user.name}님이 쓴 글</Button>
                 </Link>
                 <Link href="/mypage">
-                       <button className="menu-button">마이페이지</button>
+                       <Button variant="outline-secondary">마이페이지</Button>
                 </Link>
-                <button
-                    className="menu-button"
+                <Button
+                    variant="outline-secondary"
                     onClick={() => signOut()}
                 >
                     로그아웃
-                </button>
+                </Button>
             </div>
         </header>
                 );
@@ -46,15 +46,15 @@ const Top = () => {
                     </nav>
                     <div className="auth">
                         <Link href="/">
-                            <button className="menu-button">홈</button>
+                            <Button variant="outline-info">홈</Button>
                         </Link>
 
 
                         <Link href="/signin">
-                    <button className="menu-button">로그인</button>
+                    <Button variant="outline-secondary">로그인</Button>
                 </Link>
                 <Link href="/newuser">
-                    <button className="menu-button">회원가입</button>
+                    <Button variant="outline-secondary">회원가입</Button>
                 </Link>
             </div>
         </header>

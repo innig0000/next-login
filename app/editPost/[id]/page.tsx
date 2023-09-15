@@ -3,6 +3,7 @@ import Top from "@/app/components/Top";
 import React, {useEffect, useState} from "react";
 import {useSession} from "next-auth/react";
 import Link from "next/link";
+import {Button} from "react-bootstrap";
 
 const EditPost = ({ params }: { params: { id: string } }) => {
     const id = Number(params.id)
@@ -136,12 +137,12 @@ const EditPost = ({ params }: { params: { id: string } }) => {
                 </div>
                 <div style={{ display: "flex", justifyContent: "center"}}>
                     <Link href={`/posts/${id}`}>
-                    <button
-                        className="px-12 py-4 border rounded-xl bg-red-300 mr-4"
+                    <Button
+                        variant="outline-warning"
                         onClick={handleEditSubmit}
                     >
                         수정
-                    </button>
+                    </Button>
                     </Link>
                     </div>
             </div>

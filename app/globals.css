@@ -45,7 +45,8 @@ th {
   border-style: solid;
   border-width: 1px;
   text-align: center;
-  vertical-align: middle; }
+  vertical-align: middle;
+}
 
 .td-title:hover {
   text-decoration: underline;
@@ -129,7 +130,7 @@ th {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: black;
+  background-color: whitesmoke;
   color: white;
 }
 
@@ -153,20 +154,6 @@ th {
   gap: 1rem;
 }
 
-.menu-button {
-  background-color: lightsteelblue;
-  color: rebeccapurple;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.menu-button:hover {
-  background-color: lightpink;
-}
-
 .post-detail-container {
   width: 100%;
   max-width: 1200px; /* Optionally, set a max-width to control the content width */
@@ -180,7 +167,7 @@ th {
   overflow-y: auto;
   padding: 15px;
   border-radius: 10px;
-  background-color: #343a40;
+  background-color: whitesmoke;
   word-break: break-all;
 }
 
@@ -198,7 +185,7 @@ th {
 }
 
 .modal {
-  background: lightyellow;
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);

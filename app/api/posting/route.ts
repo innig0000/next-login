@@ -29,5 +29,5 @@ export async function POST(request: Request) {
         },
     })
 
-    return new Response(newPost)
+    return new Response(newPost.id)
 }

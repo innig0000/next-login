@@ -3,14 +3,16 @@ import React, {useEffect, useState} from "react";
 import {useSession} from "next-auth/react";
 import Top from "@/app/components/Top";
 import Link from "next/link";
+import {Table} from "react-bootstrap";
 
 function UserPosts() {
     const [data, setData] = useState([]);
     const { data: session } = useSession();
 
     useEffect(()=>{
-        postSubmit()
+        postSubmit();
         },[])
+
 
     const postSubmit = async () => {
         try {
@@ -40,7 +42,7 @@ function UserPosts() {
         <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
             <h1 className='text-4xl font-semibold'>{session.user.name}님이 쓴 글</h1>
             <div>총 글의 개수: {data.length}개</div>
-            <table className="table table-dark">
+            <Table className="table">
                 <thead>
                 <tr>
                     <th style={{width: "5%"}}>#</th>
@@ -61,7 +63,7 @@ function UserPosts() {
                     </tr>
                 ))}
                 </tbody>
-            </table>
+            </Table>
         </div>
         </div>
     );
