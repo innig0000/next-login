@@ -50,7 +50,7 @@ const Posting = () => {
 
     return <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
         <Top/>
-        <h1 className='text-4xl font-semibold'>새로운 글 작성하기</h1>
+        <h1 className='text-4xl font-semibold text-white'>새로운 글 작성하기</h1>
         <form onSubmit={handleSubmit}>
             <div style={{padding: "10px"}}>
                 <label
@@ -91,7 +91,7 @@ const Posting = () => {
                 <div className='mt-6'>
                     <Button
                         className='w-full transform rounded-md bg-blue-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
-                        variant="outline-primary"
+                        variant="outline-secondary"
                         onClick={handleShow}
                     >
                         Submit
@@ -108,7 +108,7 @@ const Posting = () => {
                             </Button>
                             <Button
                                 type="submit"
-                                variant="primary"
+                                variant="outline-secondary"
                                 onClick={handleSubmit}>
                                 제출
                             </Button>

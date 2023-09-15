@@ -1,7 +1,7 @@
 'use client'
 import React, {useRef, useState} from "react";
-import Link from "next/link";
 import Top from "../components/Top";
+import {Button, Table} from "react-bootstrap";
 
 const FindEmail = () => {
     const nameRef = useRef(null);
@@ -38,7 +38,7 @@ const FindEmail = () => {
 
     return <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
         <Top/>
-        <h1 className='text-4xl font-semibold'>이메일 주소 찾기</h1>
+        <h1 className='text-4xl font-semibold text-white'>이메일 주소 찾기</h1>
         <div>
             <div className='mt-4'>
                 <label
@@ -61,15 +61,16 @@ const FindEmail = () => {
                 </div>
             </div>
             <div className='mt-6'>
-                <button
+                <Button
+                    variant="outline-secondary"
                     onClick={handleSubmit}
                     className='w-full transform rounded-md bg-gray-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
                 >
                     찾기
-                </button>
+                </Button>
             </div>
 
-                <table className="table table-dark mt-10">
+                <Table className="table mt-10">
                 <thead>
                 <tr>
                     <th> 찾기 버튼을 누르고 다음 중 본인의 이메일 주소를 찾아보세요.</th>
@@ -86,17 +87,7 @@ const FindEmail = () => {
                         </td>
                     </tr>
                 </tbody>
-            </table>
-
-            <Link href="/signin">
-                <div style={{padding: "10px", alignItems: "center", display: "flex", justifyContent: "center"}}>
-                    <div className='mt-6'>
-                        <button className="w-full px-12 py-4 border rounded-xl bg-yellow-300">
-                            로그인 화면으로
-                        </button>
-                    </div>
-                </div>
-            </Link>
+            </Table>
         </div>
     </main>
 }

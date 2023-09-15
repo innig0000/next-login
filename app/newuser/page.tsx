@@ -2,6 +2,8 @@
 import React, {useState} from "react";
 import Top from '../components/Top';
 import Link from "next/link";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Button} from "react-bootstrap";
 
 function NewUser() {
     const [data, setData] = useState({
@@ -84,7 +86,7 @@ function NewUser() {
     return (
         <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
             <Top/>
-            <h1 className='text-4xl font-semibold'>회원 가입</h1>
+            <h1 className='text-4xl font-semibold text-white'>회원 가입</h1>
         <form onSubmit={handleSubmit}>
             <div style={{padding: "10px"}}>
             <label
@@ -125,7 +127,7 @@ function NewUser() {
                 >
                     중복 체크
                 </button>
-                {emailChecked && !isEmailTaken && emailTrueChecked && (<p className="text-green-500">사용 가능한 이메일 입니다.</p>)}
+                {emailChecked && !isEmailTaken && emailTrueChecked && (<p className="text-white-500">사용 가능한 이메일 입니다.</p>)}
                 {emailChecked && isEmailTaken && (<p className="text-red-500 ml-2">이미 사용 중인 이메일입니다.</p>)}
             </div>
             </div>
@@ -148,22 +150,14 @@ function NewUser() {
             </div>
             <div style={{padding: "10px"}}>
             <div className='mt-6'>
-            <button
+            <Button
+                variant="outline-secondary"
                 type="submit"
                 className='w-full transform rounded-md bg-blue-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
             >
                 Submit
-            </button>
+            </Button>
             </div>
-                <Link href="/signin">
-                    <div style={{padding: "10px", alignItems: "center", display: "flex", justifyContent: "center"}}>
-                        <div className='mt-6'>
-                            <button className="w-full px-12 py-4 border rounded-xl bg-yellow-300">
-                                로그인 화면으로
-                            </button>
-                        </div>
-                    </div>
-                </Link>
             </div>
         </form>
         </main>

@@ -1,6 +1,7 @@
 'use client'
 import Top from "@/app/components/Top";
 import React, {useState} from "react";
+import {Button} from "react-bootstrap";
 
 const PassWordReset = () => {
     const [data, setData] = useState({});
@@ -36,7 +37,7 @@ const PassWordReset = () => {
 
     return  <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
         <Top/>
-        <h1 className='text-4xl font-semibold'>비밀번호 찾기</h1>
+        <h1 className='text-4xl font-semibold text-white'>비밀번호 찾기</h1>
         <label>사용자 이름과 이메일 주소를 입력해주세요. </label>
         <form onSubmit={handleSubmit}>
             <div style={{padding: "10px"}}>
@@ -75,12 +76,13 @@ const PassWordReset = () => {
             </div>
             <div style={{padding: "10px"}}>
                 <div className='mt-6'>
-                    <button
+                    <Button
+                        variant="outline-secondary"
                         type="submit"
                         className='w-full transform rounded-md bg-blue-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
                     >
                         계속하기
-                    </button>
+                    </Button>
                 </div>
             </div>
         </form>

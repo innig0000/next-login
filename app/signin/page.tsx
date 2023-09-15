@@ -3,6 +3,8 @@ import React, {useRef} from 'react'
 import {signIn} from 'next-auth/react'
 import Link from "next/link";
 import Top from "@/app/components/Top";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Button} from "react-bootstrap";
 
 function Login() {
     const emailRef = useRef(null)
@@ -37,7 +39,7 @@ function Login() {
     return (
         <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
             <Top/>
-            <h1 className='text-4xl font-semibold'>Login</h1>
+            <h1 className='text-4xl font-semibold text-white'>Login</h1>
             <div>
                 <div>
                     <label
@@ -84,12 +86,13 @@ function Login() {
                 </div>
 
                 <div className='mt-6'>
-                    <button
+                    <Button
+                        variant="outline-secondary"
                         onClick={handleSubmit}
                         className='w-full transform rounded-md bg-gray-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
                     >
                         Log In
-                    </button>
+                    </Button>
                 </div>
                 <div className='flex space-x-4'>
                 <Link href="/find-email">
