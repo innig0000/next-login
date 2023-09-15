@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {useSession} from "next-auth/react";
 import Top from "../components/Top";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Button, Table, Alert} from "react-bootstrap";
 
 const MyPage = () => {
     const [data, setData] = useState({});
@@ -14,6 +15,16 @@ const MyPage = () => {
             email: "",
         }
     });
+    const [alertText, setAlertText] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
+
+    useEffect(() => {
+        if (showAlert) {
+            document.body.classList.add('show-alert');
+        } else {
+            document.body.classList.remove('show-alert');
+        }
+    },[showAlert]);
 
     useEffect(() => {
         const storedSessionString = localStorage.getItem('userSession');
@@ -34,6 +45,13 @@ const MyPage = () => {
     const name = storedSession.user.name;
     const email = storedSession.user.email;
 
+    const showAlertWithText = (text) => {
+        setAlertText(text);
+        setShowAlert(true);
+    }
+
+    setTimeout(() => setShowAlert(false), 5000);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -48,10 +66,10 @@ const MyPage = () => {
             const responseData = await response.json()
             if (response.ok) {
                 console.log('POST request successful');
-                alert("비밀번호가 성공적으로 변경되었습니다.")
+                showAlertWithText("비밀번호가 성공적으로 변경되었습니다.")
             } else {
                 console.error('POST request failed');
-                alert(JSON.stringify(responseData));
+                showAlertWithText(JSON.stringify(responseData));
             }
         } catch (error) {
             console.error('Error:', error);
@@ -69,10 +87,25 @@ const MyPage = () => {
         <Top/>
     <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
         <div class="col-lg-4">
-
+            {showAlert && (
+                <Alert
+                    variant="warning"
+                    dismissible
+                    className="slide-down-alert"
+                    style={{
+                        position: 'absolute',
+                        top: '10px',
+                        right: '200px',
+                        zIndex: 9999,
+                    }}
+                >
+                    <Alert.Heading>알림</Alert.Heading>
+                    <p>{alertText}</p>
+                </Alert>
+            )}
 
                 <div class="table-responsive">
-                    <table className="table table-centered border mb-0">
+                    <Table className="table table-centered border mb-0">
                         <thead class="bg-light">
                         <tr>
                             <th colSpan="2">내 정보 확인하기</th>
@@ -134,19 +167,18 @@ const MyPage = () => {
                                            />
                                        </div>
                                    </div>
-                                   <button
+                                   <Button
+                                       variant="outline-secondary"
                                        type="submit"
-                                       className='w-full transform rounded-md bg-grey-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
                                    >
                                        Submit
-                                   </button>
+                                   </Button>
                                </form>
                             </td>
                         </tr>
                         </tbody>
-                    </table>
+                    </Table>
                 </div>
-
         </div>
     </div>
         </div>

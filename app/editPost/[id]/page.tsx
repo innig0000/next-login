@@ -74,7 +74,6 @@ const EditPost = ({ params }: { params: { id: string } }) => {
 
             if (response.ok) {
                 console.log("Edit successful");
-                alert("글 수정을 성공했습니다.")
                 setFormData({
                     title: "",
                     content: "",

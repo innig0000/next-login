@@ -4,6 +4,7 @@ import {useSession} from "next-auth/react";
 import Top from "@/app/components/Top";
 import Link from "next/link";
 import {Table} from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function UserPosts() {
     const [data, setData] = useState([]);
@@ -64,7 +65,7 @@ function UserPosts() {
         <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
             <h1 className='text-4xl font-semibold text-white'>{storedSession.user.name}님이 쓴 글</h1>
             <div>총 글의 개수: {data.length}개</div>
-            <Table className="table">
+            <Table className="table table-striped table-bordered">
                 <thead>
                 <tr>
                     <th style={{width: "5%"}}>#</th>

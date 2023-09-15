@@ -28,6 +28,6 @@ export async function POST(request: Request) {
             }
         },
     })
-
+console.debug(newPost);
     return new Response(newPost.id)
 }
