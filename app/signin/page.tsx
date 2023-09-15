@@ -1,14 +1,31 @@
 'use client'
-import React, {useRef} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {signIn} from 'next-auth/react'
 import Link from "next/link";
 import Top from "@/app/components/Top";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button} from "react-bootstrap";
+import {Alert, Button} from "react-bootstrap";
 
 function Login() {
     const emailRef = useRef(null)
     const passwordRef = useRef(null)
+    const [alertText, setAlertText] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
+
+    useEffect(() => {
+        if (showAlert) {
+            document.body.classList.add('show-alert');
+        } else {
+            document.body.classList.remove('show-alert');
+        }
+    },[showAlert]);
+
+    const showAlertWithText = (text) => {
+        setAlertText(text);
+        setShowAlert(true);
+    }
+
+    setTimeout(() => setShowAlert(false), 5000);
 
     const handleSubmit = async () => {
         try {
@@ -20,13 +37,13 @@ function Login() {
 
             if(result?.error){
                 console.log("Authenticationfailed:", result.error);
-                alert("로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요");
+                showAlertWithText("로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.")
             } else {
                 window.location.href = "/";
             }
         } catch (error) {
             console.error("로그인 에러:", error);
-            alert("로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요");
+            showAlertWithText("로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.")
         }
     };
 
@@ -39,6 +56,22 @@ function Login() {
     return (
         <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
             <Top/>
+            {showAlert && (
+                <Alert
+                    variant="warning"
+                    dismissible
+                    className="slide-down-alert"
+                    style={{
+                        position: 'absolute',
+                        top: '10px',
+                        right: '200px',
+                        zIndex: 9999,
+                    }}
+                >
+                    <Alert.Heading>알림</Alert.Heading>
+                    <p>{alertText}</p>
+                </Alert>
+            )}
             <h1 className='text-4xl font-semibold text-white'>Login</h1>
             <div>
                 <div>

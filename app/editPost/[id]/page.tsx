@@ -151,7 +151,7 @@ const EditPost = ({ params }: { params: { id: string } }) => {
                                 type="submit"
                                 variant="warning"
                                 onClick={handleEditSubmit}>
-                                수정
+                                수정 완료
                             </Button>
                         </Modal.Footer>
                     </Modal>

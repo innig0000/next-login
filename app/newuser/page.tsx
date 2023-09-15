@@ -125,7 +125,7 @@ function NewUser() {
             >
                 Name
             </label>
-            <div className='mt-1'>
+            <div className='mt-2'>
             <input
                 type="name"
                 name="name"
@@ -157,8 +157,8 @@ function NewUser() {
                 >
                     중복 체크
                 </button>
-                {emailChecked && !isEmailTaken && emailTrueChecked && (<p className="text-white mt-1">사용 가능한 이메일 입니다.</p>)}
-                {emailChecked && isEmailTaken && (<p className="text-red-500 ml-2">이미 사용 중인 이메일입니다.</p>)}
+                {emailChecked && !isEmailTaken && emailTrueChecked && (<p className="text-white ml-2 mt-1">사용 가능한 이메일 입니다.</p>)}
+                {emailChecked && isEmailTaken && (<p className="text-black ml-2 mt-1">이미 사용 중인 이메일입니다.</p>)}
             </div>
             </div>
             <div style={{padding: "10px"}}>
@@ -168,7 +168,7 @@ function NewUser() {
             >
                 Password
             </label>
-            <div className='mt-1'>
+            <div>
             <input
                 type="password"
                 name="password"
