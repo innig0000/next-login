@@ -62,7 +62,6 @@ const Posts = ({ params }: { params: { id: string } }) => {
 
             if (Response.ok) {
                 console.log('DELETE request successful');
-               // alert('글이 성공적으로 삭제되었습니다.')
                 router.push("/userposts");
             } else {
                 console.error('DELETE request failed');
@@ -103,6 +102,7 @@ const Posts = ({ params }: { params: { id: string } }) => {
                     </label>
                     <div className="post-content h-[300px]">{data.content}</div>
                 </div>
+
                 <div style={{ display: "flex", justifyContent: "center"}}>
                     {session ?
                         <div>

@@ -38,7 +38,7 @@ const PassWordReset = () => {
     return  <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
         <Top/>
         <h1 className='text-4xl font-semibold text-white'>비밀번호 찾기</h1>
-        <label>사용자 이름과 이메일 주소를 입력해주세요. </label>
+        <div>사용자 이름과 이메일 주소를 입력해주세요. </div>
         <form onSubmit={handleSubmit}>
             <div style={{padding: "10px"}}>
                 <label

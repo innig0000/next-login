@@ -1,7 +1,6 @@
 'use client'
 import React, {useState} from "react";
 import Top from '../components/Top';
-import Link from "next/link";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button} from "react-bootstrap";
 

@@ -1,15 +1,38 @@
 'use client'
 import React, {useEffect, useState} from "react";
-import Link from "next/link";
 import {useSession} from "next-auth/react";
 import Top from "../components/Top";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MyPage = () => {
     const [data, setData] = useState({});
     const { data: session } = useSession();
-    const id = session.user.id;
-    const name = session.user.name;
-    const email = session.user.email;
+    const [storedSession, setStoredSession] = useState({
+        user: {
+            id: "",
+            name: "",
+            email: "",
+        }
+    });
+
+    useEffect(() => {
+        const storedSessionString = localStorage.getItem('userSession');
+        if (storedSessionString) {
+            const storedSession = JSON.parse(storedSessionString);
+            setStoredSession(storedSession);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (session) {
+            localStorage.setItem('userSession', JSON.stringify(session));
+            setStoredSession(session);
+        }
+    }, [session]);
+
+    const id = storedSession.user.id;
+    const name = storedSession.user.name;
+    const email = storedSession.user.email;
 
     const handleSubmit = async (e) => {
         e.preventDefault();

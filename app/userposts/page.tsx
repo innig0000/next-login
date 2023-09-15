@@ -8,15 +8,37 @@ import {Table} from "react-bootstrap";
 function UserPosts() {
     const [data, setData] = useState([]);
     const { data: session } = useSession();
+    const [storedSession, setStoredSession] = useState({
+        user: {
+            id: "",
+            name: "",
+            email: "",
+        }
+    });
+
+    useEffect(() => {
+        const storedSessionString = localStorage.getItem('userSession');
+        if (storedSessionString) {
+            const storedSession = JSON.parse(storedSessionString);
+            setStoredSession(storedSession);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (session) {
+            localStorage.setItem('userSession', JSON.stringify(session));
+            setStoredSession(session);
+        }
+    }, [session]);
 
     useEffect(()=>{
         postSubmit();
-        },[])
+        },[session, storedSession])
 
 
     const postSubmit = async () => {
         try {
-            const response = await fetch(`api/user/${session.user.id}`, {
+            const response = await fetch(`api/user/${storedSession.user.id}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -40,7 +62,7 @@ function UserPosts() {
         <div>
             <Top/>
         <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
-            <h1 className='text-4xl font-semibold text-white'>{session.user.name}님이 쓴 글</h1>
+            <h1 className='text-4xl font-semibold text-white'>{storedSession.user.name}님이 쓴 글</h1>
             <div>총 글의 개수: {data.length}개</div>
             <Table className="table">
                 <thead>
