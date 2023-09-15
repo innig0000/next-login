@@ -36,7 +36,7 @@ const AllPost = () => {
             <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
                 <h1 className='text-4xl font-semibold text-white'>모든 게시글</h1>
                 <div>총 글의 개수: {data.length}개</div>
-                <Table className="table table-striped table-bordered">
+                <Table className="table table-striped table-bordered text-black-50">
                     <thead>
                     <tr>
                         <th style={{width: "5%"}}>#</th>
@@ -50,7 +50,7 @@ const AllPost = () => {
                         <tr key={item.id}>
                             <td>{item.id}</td>
                             <td className="td-title">
-                                <Link href={`/posts/${item.id}`}>{item.title}</Link>
+                                <Link href={`/posts/${item.id}`}><button className="text-black">{item.title}</button></Link>
                             </td>
                             <td>{item.author.name}</td>
                             <td>{item.createdAt.substring(0, 10)}</td>

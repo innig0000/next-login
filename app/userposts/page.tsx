@@ -79,7 +79,7 @@ function UserPosts() {
                     <tr key={item.id}>
                         <td>{item.id}</td>
                         <td className="td-title">
-                            <Link href={`/posts/${item.id}`}>{item.title}</Link>
+                            <Link href={`/posts/${item.id}`}><button className="text-black">{item.title}</button></Link>
                             </td>
                         <td>{item.author.name}</td>
                         <td>{item.createdAt.substring(0, 10)}</td>

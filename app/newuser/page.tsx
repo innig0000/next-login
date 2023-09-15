@@ -51,8 +51,6 @@ function NewUser() {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setData((prevData) => ({ ...prevData, [name]: value }));
-       // setIsEmailTaken(false);
-      //  setEmailChecked(false);
     };
 
     const handleCheckEmail = async () => {
@@ -111,7 +109,7 @@ function NewUser() {
             >
                 Email
             </label>
-            <div className='mt-4'>
+            <div className='mt-2'>
             <input
                 type="email"
                 name="email"
@@ -126,7 +124,7 @@ function NewUser() {
                 >
                     중복 체크
                 </button>
-                {emailChecked && !isEmailTaken && emailTrueChecked && (<p className="text-white-500">사용 가능한 이메일 입니다.</p>)}
+                {emailChecked && !isEmailTaken && emailTrueChecked && (<p className="text-white mt-1">사용 가능한 이메일 입니다.</p>)}
                 {emailChecked && isEmailTaken && (<p className="text-red-500 ml-2">이미 사용 중인 이메일입니다.</p>)}
             </div>
             </div>

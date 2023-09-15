@@ -90,7 +90,7 @@ th {
 
 .link {
   position: relative;
-  color: black !important;
+  color: black;
 }
 
 .link::before {
@@ -212,5 +212,3 @@ div {
 h1 {
   font-family: Lato;
 }
-
-

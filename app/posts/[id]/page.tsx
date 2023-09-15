@@ -64,7 +64,6 @@ const Posts = ({ params }: { params: { id: string } }) => {
                 router.push("/userposts");
             } else {
                 console.error('DELETE request failed');
-                alert('글 삭제를 실패하였습니다.')
             }
             } catch (error) {
                 console.error('Error:', error);

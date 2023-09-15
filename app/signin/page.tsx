@@ -60,7 +60,7 @@ function Login() {
                             type='email'
                             required
                             autoFocus={true}
-                            className='mt-2 block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
+                            className='mt-2 block w-full rounded-md border bg-white px-4 py-2 text-black-50 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
                         />
                     </div>
                 </div>
@@ -80,7 +80,7 @@ function Login() {
                             ref={passwordRef}
                             onChange={(e: any) => (passwordRef.current = e.target.value)}
                             onKeyPress={handlePasswordKeyPress}
-                            className='mt-2 block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
+                            className='mt-2 block w-full rounded-md border bg-white px-4 py-2 text-black-50 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
                         />
                     </div>
                 </div>
@@ -94,23 +94,21 @@ function Login() {
                         Log In
                     </Button>
                 </div>
-                <div className='flex space-x-4'>
+                <div className='flex space-x-4 mt-3'>
                 <Link href="/find-email">
-                        <div className='mt-6 link '>
+                        <Button variant="outline-secondary" className='text-white'>
                             이메일 주소 찾기
-                        </div>
+                        </Button>
                 </Link>
-                    <span className='mt-6'>|</span>
                 <Link href="/password-reset">
-                        <div className='mt-6 link'>
+                        <Button variant="outline-secondary" className='text-white'>
                             비밀번호 찾기
-                        </div>
+                        </Button>
                 </Link>
-                    <span className='mt-6'>|</span>
                 <Link href="/newuser">
-                        <div className='mt-6 link'>
+                        <Button variant="outline-secondary" className='text-white'>
                              회원가입
-                        </div>
+                        </Button>
                 </Link>
                 </div>
             </div>
