@@ -2,7 +2,7 @@
 import Top from "@/app/components/Top";
 import React, {useEffect, useState} from "react";
 import {useSession} from "next-auth/react";
-import {Button, Modal} from "react-bootstrap";
+import {Alert, Button, Modal} from "react-bootstrap";
 import {useRouter} from "next/navigation";
 
 const EditPost = ({ params }: { params: { id: string } }) => {
@@ -22,6 +22,23 @@ const EditPost = ({ params }: { params: { id: string } }) => {
     });
 
     const [show, setShow] = useState(false);
+    const [alertText, setAlertText] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
+
+    useEffect(() => {
+        if (showAlert) {
+            document.body.classList.add('show-alert');
+        } else {
+            document.body.classList.remove('show-alert');
+        }
+    },[showAlert]);
+
+    const showAlertWithText = (text) => {
+        setAlertText(text);
+        setShowAlert(true);
+    }
+
+    setTimeout(() => setShowAlert(false), 5000);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -82,7 +99,7 @@ const EditPost = ({ params }: { params: { id: string } }) => {
              router.push(`/posts/${id}`)
             } else {
                 console.error("Edit failed");
-                alert("글 수정에 실패했습니다.")
+                showAlertWithText("글 수정에 실패했습니다.")
             }
         } catch (error) {
             console.error("Error:", error);
@@ -92,6 +109,22 @@ const EditPost = ({ params }: { params: { id: string } }) => {
     return (
         <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
             <Top/>
+            {showAlert && (
+                <Alert
+                    variant="warning"
+                    dismissible
+                    className="slide-down-alert"
+                    style={{
+                        position: 'absolute',
+                        top: '10px',
+                        right: '200px',
+                        zIndex: 9999,
+                    }}
+                >
+                    <Alert.Heading>알림</Alert.Heading>
+                    <p>{alertText}</p>
+                </Alert>
+            )}
             <div className="post-detail-container">
                 <div  style={{padding: "10px"}}>
                     <label className='block text-sm text-gray-800 dark:text-gray-200'>
