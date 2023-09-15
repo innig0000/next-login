@@ -20,7 +20,6 @@ const Posts = ({ params }: { params: { id: string } }) => {
     const { data: session } = useSession();
     const [show, setShow] = useState(false);
 
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 

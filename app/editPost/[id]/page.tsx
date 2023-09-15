@@ -2,11 +2,12 @@
 import Top from "@/app/components/Top";
 import React, {useEffect, useState} from "react";
 import {useSession} from "next-auth/react";
-import Link from "next/link";
-import {Button} from "react-bootstrap";
+import {Button, Modal} from "react-bootstrap";
+import {useRouter} from "next/navigation";
 
 const EditPost = ({ params }: { params: { id: string } }) => {
     const id = Number(params.id)
+    const router = useRouter();
     const { data: session } = useSession();
     const [data, setData] = useState({
         author: {name: ""},
@@ -19,6 +20,12 @@ const EditPost = ({ params }: { params: { id: string } }) => {
         title: "",
         content: "",
     });
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
 
     useEffect(() =>{
         detailPage();
@@ -59,9 +66,6 @@ const EditPost = ({ params }: { params: { id: string } }) => {
     };
 
     const handleEditSubmit = async () => {
-        const confirmation = window.confirm('정말로 수정하시겠습니까?');
-
-        if (confirmation){
         try {
             const response = await fetch(`/api/editPost/${id}`, {
                 method: "PUT",
@@ -74,22 +78,14 @@ const EditPost = ({ params }: { params: { id: string } }) => {
 
             if (response.ok) {
                 console.log("Edit successful");
-                setFormData({
-                    title: "",
-                    content: "",
-                });
-
-                detailPage();
+                setShow(false);
+             router.push(`/posts/${id}`)
             } else {
                 console.error("Edit failed");
                 alert("글 수정에 실패했습니다.")
             }
         } catch (error) {
             console.error("Error:", error);
-        }
-    } else {
-        console.log("수정이 취소되었습니다.")
-            alert("수정이 취소되었습니다.")
         }
     }
 
@@ -135,14 +131,31 @@ const EditPost = ({ params }: { params: { id: string } }) => {
                     />
                 </div>
                 <div style={{ display: "flex", justifyContent: "center"}}>
-                    <Link href={`/posts/${id}`}>
                     <Button
                         variant="outline-warning"
-                        onClick={handleEditSubmit}
+                        onClick={handleShow}
                     >
                         수정
                     </Button>
-                    </Link>
+
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>글이 수정됩니다.</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>정말로 수정하시겠습니까?</Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                취소
+                            </Button>
+                            <Button
+                                type="submit"
+                                variant="warning"
+                                onClick={handleEditSubmit}>
+                                수정
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
+
                     </div>
             </div>
                 </main>

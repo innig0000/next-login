@@ -48,6 +48,7 @@ th {
   text-align: center;
   vertical-align: middle;
   color: #6c757d;
+  font-family: Lato;
 }
 
 
@@ -74,7 +75,7 @@ th {
 .table > thead {
   vertical-align: bottom;
   background-color: #edeff1;
-  font-family: sans-serif;}
+  font-family: Lato;}
 .table > :not(:last-child) > :last-child > * {
   border-bottom-color: #edeff1; }
 
@@ -192,6 +193,7 @@ th {
 
 div {
   color: #6c757d;
+  font-family: Lato;
 }
 
 .slide-down-alert {
@@ -205,6 +207,10 @@ div {
   100% {
     transform: translateY(0);
   }
+}
+
+h1 {
+  font-family: Lato;
 }
 
 
