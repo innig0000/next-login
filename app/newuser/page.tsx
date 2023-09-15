@@ -1,8 +1,8 @@
 'use client'
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Top from '../components/Top';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button} from "react-bootstrap";
+import {Alert, Button} from "react-bootstrap";
 
 function NewUser() {
     const [data, setData] = useState({
@@ -13,6 +13,23 @@ function NewUser() {
     const [isEmailTaken, setIsEmailTaken] = useState(false);
     const [emailChecked, setEmailChecked] = useState(false);
     const [emailTrueChecked, setEmailTrueChecked] = useState(false);
+    const [alertText, setAlertText] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
+
+    useEffect(() => {
+        if (showAlert) {
+            document.body.classList.add('show-alert');
+        } else {
+            document.body.classList.remove('show-alert');
+        }
+    },[showAlert]);
+
+    const showAlertWithText = (text) => {
+        setAlertText(text);
+        setShowAlert(true);
+    }
+
+    setTimeout(() => setShowAlert(false), 5000);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,20 +46,20 @@ function NewUser() {
 
                 if (response.ok) {
                     console.log('POST request successful');
-                    alert("계정이 성공적으로 생성되었습니다!")
+                    showAlertWithText("계정이 성공적으로 생성되었습니다!")
                 }
         } else if (!data.name) {
                 console.error('POST request failed');
-                alert("사용자 이름을 작성해 주세요.");
+            showAlertWithText("사용자 이름을 작성해 주세요.")
         } else if (isEmailTaken || !emailChecked) {
             console.error('POST request failed');
-            alert("이메일 중복을 체크해 주세요.");
+            showAlertWithText("이메일 중복을 체크해 주세요.")
         } else if (!data.password) {
             console.error('POST request failed');
-            alert("비밀번호를 입력해 주세요.");
+            showAlertWithText("비밀번호를 입력해주세요")
         } else {
             console.error('POST request failed');
-            alert("계정 생성에 실패했습니다.")
+            showAlertWithText("계정 생성에 실패했습니다.")
         }
         } catch (error) {
             console.error('Error:', error);
@@ -57,7 +74,7 @@ function NewUser() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const isMailTrue = emailRegex.test(data.email);
         if (!isMailTrue) {
-            alert("올바른 이메일 주소를 입력하세요")
+            showAlertWithText("올바른 이메일 주소를 입력하세요.")
             setEmailTrueChecked(false);
         } else {
             setEmailTrueChecked(true);
@@ -83,6 +100,22 @@ function NewUser() {
     return (
         <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
             <Top/>
+            {showAlert && (
+                <Alert
+                    variant="warning"
+                    dismissible
+                    className="slide-down-alert"
+                    style={{
+                        position: 'absolute',
+                        top: '10px',
+                        right: '200px',
+                        zIndex: 9999,
+                    }}
+                >
+                    <Alert.Heading>알림</Alert.Heading>
+                    <p>{alertText}</p>
+                </Alert>
+            )}
             <h1 className='text-4xl font-semibold text-white'>회원 가입</h1>
         <form onSubmit={handleSubmit}>
             <div style={{padding: "10px"}}>

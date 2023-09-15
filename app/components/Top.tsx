@@ -43,7 +43,7 @@ const Top = () => {
             </nav>
             <div className="auth">
                 <Link href="/">
-                    <Button variant="outline-info">홈</Button>
+                    <Button variant="outline-dark">홈</Button>
                 </Link>
                 <Link href="/posting">
                     <Button variant="outline-secondary">새 글 쓰기</Button>
@@ -73,7 +73,7 @@ const Top = () => {
                     </nav>
                     <div className="auth">
                         <Link href="/">
-                            <Button variant="outline-info">홈</Button>
+                            <Button variant="outline-dark">홈</Button>
                         </Link>
 
 
