@@ -27,7 +27,9 @@ const PassWordReset = () => {
         }
     }
 
-    setTimeout(() => setShowAlert(false), 5000);
+    const handleCloseAlert = () => {
+        setShowAlert(false);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -74,6 +76,13 @@ const PassWordReset = () => {
             >
                 <Alert.Heading>성공 알림</Alert.Heading>
                 <p>{alertText}</p>
+                <Button
+                    variant="outline-success"
+                    className="position-relative start-50 translate-middle-x mb-3"
+                    onClick={handleCloseAlert}
+                >
+                    닫기
+                </Button>
             </Alert>
         )}
         {showAlert && !isSuccess && (
@@ -90,15 +99,22 @@ const PassWordReset = () => {
             >
                 <Alert.Heading>실패 알림</Alert.Heading>
                 <p>{alertText}</p>
+                <Button
+                    variant="outline-warning"
+                    className="position-relative start-50 translate-middle-x mb-3"
+                    onClick={handleCloseAlert}
+                >
+                    닫기
+                </Button>
             </Alert>
         )}
-        <h1 className='text-4xl font-semibold text-white'>비밀번호 찾기</h1>
+        <h1 className='text-4xl font-semibold text-black-50'>비밀번호 찾기</h1>
         <div>사용자 이름과 이메일 주소를 입력해주세요. </div>
         <form onSubmit={handleSubmit}>
             <div style={{padding: "10px"}}>
                 <label
                     htmlFor='name'
-                    className='block text-sm text-gray-800 dark:text-gray-200'
+                    className='block text-sm text-gray-800 dark:text-gray-500'
                 >
                     Name
                 </label>
@@ -115,7 +131,7 @@ const PassWordReset = () => {
             <div style={{padding: "10px"}}>
                 <label
                     htmlFor='email'
-                    className='block text-sm text-gray-800 dark:text-gray-200'
+                    className='block text-sm text-gray-800 dark:text-gray-500'
                 >
                     Email
                 </label>
@@ -134,7 +150,7 @@ const PassWordReset = () => {
                     <Button
                         variant="outline-secondary"
                         type="submit"
-                        className='w-full transform rounded-md bg-blue-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
+                        className='w-full transform rounded-md bg-blue-700 px-4 py-2 tracking-wide transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
                     >
                         계속하기
                     </Button>

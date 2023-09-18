@@ -29,7 +29,9 @@ function NewUser() {
         setShowAlert(true);
     }
 
-    setTimeout(() => setShowAlert(false), 5000);
+    const handleCloseAlert = () => {
+        setShowAlert(false);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -114,14 +116,21 @@ function NewUser() {
                 >
                     <Alert.Heading>알림</Alert.Heading>
                     <p>{alertText}</p>
+                    <Button
+                        variant="outline-warning"
+                        className="position-relative start-50 translate-middle-x mb-3"
+                        onClick={handleCloseAlert}
+                    >
+                        닫기
+                    </Button>
                 </Alert>
             )}
-            <h1 className='text-4xl font-semibold text-white'>회원 가입</h1>
+            <h1 className='text-4xl font-semibold text-black-50'>회원 가입</h1>
         <form onSubmit={handleSubmit}>
             <div style={{padding: "10px"}}>
             <label
                 htmlFor='name'
-                className='block text-sm text-gray-800 dark:text-gray-200'
+                className='block text-sm text-gray-800 dark:text-gray-500'
             >
                 Name
             </label>
@@ -131,14 +140,14 @@ function NewUser() {
                 name="name"
                 placeholder="Name"
                 onChange={handleInputChange}
-                className='mt-2 block w-full rounded-md border bg-grey px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 white:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
+                className='mt-2 block w-full rounded-md border bg-white px-4 py-2 text-black-50 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 white:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
             />
             </div>
             </div>
             <div style={{padding: "10px"}}>
             <label
                 htmlFor='email'
-                className='block text-sm text-gray-800 dark:text-gray-200'
+                className='block text-sm text-gray-800 dark:text-gray-500'
             >
                 Email
             </label>
@@ -148,23 +157,24 @@ function NewUser() {
                 name="email"
                 placeholder="Email"
                 onChange={handleInputChange}
-                className='flex-grow rounded-md border bg-grey px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 white:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
+                className='flex-grow rounded-md border bg-white px-4 py-2 text-black-50 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 white:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
             />
-                <button
+                <Button
+                    variant="outline-warning"
                     type="button"
                     onClick={handleCheckEmail}
-                    className='ml-2 rounded-md bg-white px-4 py-2 text-black transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
+                    className='ml-2 rounded-md bg-grey px-4 py-2 transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
                 >
                     중복 체크
-                </button>
-                {emailChecked && !isEmailTaken && emailTrueChecked && (<p className="text-white ml-2 mt-1">사용 가능한 이메일 입니다.</p>)}
-                {emailChecked && isEmailTaken && (<p className="text-black ml-2 mt-1">이미 사용 중인 이메일입니다.</p>)}
+                </Button>
+                {emailChecked && !isEmailTaken && emailTrueChecked && (<p className="text-success ml-2 mt-1">사용 가능한 이메일 입니다.</p>)}
+                {emailChecked && isEmailTaken && (<p className="text-danger ml-2 mt-1">이미 사용 중인 이메일입니다.</p>)}
             </div>
             </div>
             <div style={{padding: "10px"}}>
             <label
                 htmlFor='password'
-                className='block text-sm text-gray-800 dark:text-gray-200'
+                className='block text-sm text-gray-800 dark:text-gray-500'
             >
                 Password
             </label>
@@ -174,7 +184,7 @@ function NewUser() {
                 name="password"
                 placeholder="Password"
                 onChange={handleInputChange}
-                className='mt-2 block w-full rounded-md border bg-grey px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 white:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
+                className='mt-2 block w-full rounded-md border bg-white px-4 py-2 text-black-50 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 white:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
             />
             </div>
             </div>
@@ -183,7 +193,7 @@ function NewUser() {
             <Button
                 variant="outline-secondary"
                 type="submit"
-                className='w-full transform rounded-md bg-blue-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
+                className='w-full transform rounded-md bg-blue-700 px-4 py-2 tracking-wide transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
             >
                 Submit
             </Button>

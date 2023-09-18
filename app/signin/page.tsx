@@ -25,7 +25,9 @@ function Login() {
         setShowAlert(true);
     }
 
-    setTimeout(() => setShowAlert(false), 5000);
+    const handleCloseAlert = () => {
+        setShowAlert(false);
+    }
 
     const handleSubmit = async () => {
         try {
@@ -70,14 +72,21 @@ function Login() {
                 >
                     <Alert.Heading>알림</Alert.Heading>
                     <p>{alertText}</p>
+                    <Button
+                        variant="outline-warning"
+                        className="position-relative start-50 translate-middle-x mb-3"
+                        onClick={handleCloseAlert}
+                    >
+                        닫기
+                    </Button>
                 </Alert>
             )}
-            <h1 className='text-4xl font-semibold text-white'>Login</h1>
+            <h1 className='text-4xl font-semibold text-black-50'>Login</h1>
             <div>
                 <div>
                     <label
                         htmlFor='email'
-                        className='block text-sm text-gray-800 dark:text-gray-200'
+                        className='block text-sm text-gray-800 dark:text-gray-500'
                     >
                         Email
                     </label>
@@ -101,7 +110,7 @@ function Login() {
                 <div className='mt-4'>
                     <label
                         htmlFor='password'
-                        className='block text-sm text-gray-800 dark:text-gray-200'
+                        className='block text-sm text-gray-800 dark:text-gray-500'
                     >
                         Password
                     </label>
@@ -113,7 +122,7 @@ function Login() {
                             ref={passwordRef}
                             onChange={(e: any) => (passwordRef.current = e.target.value)}
                             onKeyPress={handlePasswordKeyPress}
-                            className='mt-2 block w-full rounded-md border bg-white px-4 py-2 text-black-50 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
+                            className='mt-2 block w-full rounded-md border bg-white px-4 py-2 text-black-50 focus:border-blue-400 focus:outline-none focus:ring focus:ring-grey-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
                         />
                     </div>
                 </div>
@@ -122,24 +131,24 @@ function Login() {
                     <Button
                         variant="outline-secondary"
                         onClick={handleSubmit}
-                        className='w-full transform rounded-md bg-gray-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
+                        className='w-full transform rounded-md bg-gray-700 px-4 py-2 tracking-wide transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
                     >
                         Log In
                     </Button>
                 </div>
                 <div className='flex space-x-4 mt-3'>
                 <Link href="/find-email">
-                        <Button variant="outline-secondary" className='text-white'>
+                        <Button variant="outline-secondary" >
                             이메일 주소 찾기
                         </Button>
                 </Link>
                 <Link href="/password-reset">
-                        <Button variant="outline-secondary" className='text-white'>
+                        <Button variant="outline-secondary">
                             비밀번호 찾기
                         </Button>
                 </Link>
                 <Link href="/newuser">
-                        <Button variant="outline-secondary" className='text-white'>
+                        <Button variant="outline-secondary">
                              회원가입
                         </Button>
                 </Link>

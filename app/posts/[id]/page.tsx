@@ -77,25 +77,25 @@ const Posts = ({ params }: { params: { id: string } }) => {
             <Top/>
             <div className="post-detail-container">
                 <div  style={{padding: "10px"}}>
-                <label className='block text-sm text-gray-800 dark:text-gray-200'>
+                <label className='block text-sm text-gray-800 dark:text-gray-500'>
                     작성자
                 </label>
                 <div className="post-content">{data.author.name}</div>
                 </div>
                 <div  style={{padding: "10px"}}>
-                    <label className='block text-sm text-gray-800 dark:text-gray-200'>
+                    <label className='block text-sm text-gray-800 dark:text-gray-500'>
                         작성일
                     </label>
                     <div className="post-content">{data.createdAt.substring(0, 10)}</div>
                 </div>
                 <div  style={{padding: "10px"}}>
-                    <label className='block text-sm text-gray-800 dark:text-gray-200'>
+                    <label className='block text-sm text-gray-800 dark:text-gray-500'>
                         제목
                     </label>
                     <div className="post-content">{data.title}</div>
                 </div>
                 <div  style={{padding: "10px"}}>
-                    <label className='block text-sm text-gray-800 dark:text-gray-200'>
+                    <label className='block text-sm text-gray-800 dark:text-gray-500'>
                         내용
                     </label>
                     <div className="post-content h-[300px]">{data.content}</div>

@@ -34,7 +34,7 @@ const AllPost = () => {
     return (
         <div>
             <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
-                <h1 className='text-4xl font-semibold text-white'>모든 게시글</h1>
+                <h1 className='text-4xl font-semibold'>모든 게시글</h1>
                 <div>총 글의 개수: {data.length}개</div>
                 <Table className="table table-striped table-bordered text-black-50">
                     <thead>

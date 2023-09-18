@@ -38,12 +38,12 @@ const FindEmail = () => {
 
     return <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
         <Top/>
-        <h1 className='text-4xl font-semibold text-white'>이메일 주소 찾기</h1>
+        <h1 className='text-4xl font-semibold text-black-50'>이메일 주소 찾기</h1>
         <div>
             <div className='mt-4'>
                 <label
                     htmlFor='name'
-                    className='block text-sm text-gray-800 dark:text-gray-200'
+                    className='block text-sm text-gray-800 dark:text-gray-500'
                 >
                     사용자 이름을 입력하세요.
                 </label>
@@ -56,7 +56,7 @@ const FindEmail = () => {
                         ref={nameRef}
                         onChange={(e: any) => (nameRef.current = e.target.value)}
                         onKeyPress={handleNameKeyPress}
-                        className='mt-2 block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
+                        className='mt-2 block w-full rounded-md border bg-white px-4 py-2 text-black-50 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
                     />
                 </div>
             </div>
@@ -64,7 +64,7 @@ const FindEmail = () => {
                 <Button
                     variant="outline-secondary"
                     onClick={handleSubmit}
-                    className='w-full transform rounded-md bg-gray-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
+                    className='w-full transform rounded-md bg-gray-700 px-4 py-2 tracking-wide transition-colors duration-200 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'
                 >
                     찾기
                 </Button>

@@ -38,7 +38,9 @@ const EditPost = ({ params }: { params: { id: string } }) => {
         setShowAlert(true);
     }
 
-    setTimeout(() => setShowAlert(false), 5000);
+    const handleCloseAlert = () => {
+        setShowAlert(false);
+    }
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -123,23 +125,30 @@ const EditPost = ({ params }: { params: { id: string } }) => {
                 >
                     <Alert.Heading>알림</Alert.Heading>
                     <p>{alertText}</p>
+                    <Button
+                        variant="outline-warning"
+                        className="position-relative start-50 translate-middle-x mb-3"
+                        onClick={handleCloseAlert}
+                    >
+                        닫기
+                    </Button>
                 </Alert>
             )}
             <div className="post-detail-container">
                 <div  style={{padding: "10px"}}>
-                    <label className='block text-sm text-gray-800 dark:text-gray-200'>
+                    <label className='block text-sm text-gray-800 dark:text-gray-500'>
                         작성자
                     </label>
                     <div className="post-content">{data.author.name}</div>
                 </div>
                 <div  style={{padding: "10px"}}>
-                    <label className='block text-sm text-gray-800 dark:text-gray-200'>
+                    <label className='block text-sm text-gray-800 dark:text-gray-500'>
                         작성일
                     </label>
                     <div className="post-content">{data.createdAt.substring(0, 10)}</div>
                 </div>
                 <div  style={{padding: "10px"}}>
-                    <label className='block text-sm text-gray-800 dark:text-gray-200'>
+                    <label className='block text-sm text-gray-800 dark:text-gray-500'>
                         제목
                     </label>
                     <input
@@ -152,7 +161,7 @@ const EditPost = ({ params }: { params: { id: string } }) => {
                     />
                 </div>
                 <div  style={{padding: "10px"}}>
-                    <label className='block text-sm text-gray-800 dark:text-gray-200'>
+                    <label className='block text-sm text-gray-800 dark:text-gray-500'>
                         내용
                     </label>
                     <textarea

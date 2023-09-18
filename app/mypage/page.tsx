@@ -17,6 +17,7 @@ const MyPage = () => {
     });
     const [alertText, setAlertText] = useState('');
     const [showAlert, setShowAlert] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
 
     useEffect(() => {
         if (showAlert) {
@@ -25,6 +26,10 @@ const MyPage = () => {
             document.body.classList.remove('show-alert');
         }
     },[showAlert]);
+
+    const handleCloseAlert = () => {
+        setShowAlert(false);
+    }
 
     useEffect(() => {
         const storedSessionString = localStorage.getItem('userSession');
@@ -45,12 +50,13 @@ const MyPage = () => {
     const name = storedSession.user.name;
     const email = storedSession.user.email;
 
-    const showAlertWithText = (text) => {
+    const showAlertWithText = (text, type) => {
         setAlertText(text);
         setShowAlert(true);
+        if (type === 'success') {
+            setIsSuccess(true)
+        }
     }
-
-    setTimeout(() => setShowAlert(false), 5000);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -66,10 +72,10 @@ const MyPage = () => {
             const responseData = await response.json()
             if (response.ok) {
                 console.log('POST request successful');
-                showAlertWithText("비밀번호가 성공적으로 변경되었습니다.")
+                showAlertWithText("비밀번호가 성공적으로 변경되었습니다.", 'success')
             } else {
                 console.error('POST request failed');
-                showAlertWithText(JSON.stringify(responseData));
+                showAlertWithText(JSON.stringify(responseData), 'fail');
             }
         } catch (error) {
             console.error('Error:', error);
@@ -87,7 +93,30 @@ const MyPage = () => {
         <Top/>
     <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
         <div class="col-lg-4">
-            {showAlert && (
+            {showAlert && isSuccess && (
+                <Alert
+                    variant="success"
+                    dismissible
+                    className="slide-down-alert"
+                    style={{
+                        position: 'absolute',
+                        top: '10px',
+                        right: '200px',
+                        zIndex: 9999,
+                    }}
+                >
+                    <Alert.Heading>성공 알림</Alert.Heading>
+                    <p>{alertText}</p>
+                    <Button
+                        variant="outline-success"
+                        className="position-relative start-50 translate-middle-x mb-3"
+                        onClick={handleCloseAlert}
+                    >
+                        닫기
+                    </Button>
+                </Alert>
+            )}
+            {showAlert && !isSuccess && (
                 <Alert
                     variant="warning"
                     dismissible
@@ -99,8 +128,15 @@ const MyPage = () => {
                         zIndex: 9999,
                     }}
                 >
-                    <Alert.Heading>알림</Alert.Heading>
+                    <Alert.Heading> 실패 알림</Alert.Heading>
                     <p>{alertText}</p>
+                        <Button
+                        variant="outline-warning"
+                        className="position-relative start-50 translate-middle-x mb-3"
+                        onClick={handleCloseAlert}
+                    >
+                        닫기
+                    </Button>
                 </Alert>
             )}
 
