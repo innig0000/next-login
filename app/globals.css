@@ -8,7 +8,7 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
@@ -17,13 +17,13 @@
 }
 
 body {
-/*  color: rgb(var(--foreground-rgb));
+  color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));*/
+    rgb(var(--background-start-rgb));
 }
 
 table {
@@ -212,4 +212,18 @@ div {
 h1 {
   font-family: Lato;
   color: #6c757d;
+}
+
+.pagination {
+  background-color: #6c757d;
+}
+
+.pagination .page-item.active .page-link{
+  background-color: whitesmoke;
+  color: black;
+  border-color: grey;
+}
+
+.pagination .page-item:not(.active) .page-link {
+  color: grey;
 }

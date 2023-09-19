@@ -3,8 +3,9 @@ import React, {useEffect, useState} from "react";
 import {useSession} from "next-auth/react";
 import Top from "@/app/components/Top";
 import Link from "next/link";
-import {Table} from "react-bootstrap";
+import {Spinner, Table} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import MyPagination from "@/app/components/MyPagination";
 
 function UserPosts() {
     const [data, setData] = useState([]);
@@ -16,6 +17,10 @@ function UserPosts() {
             email: "",
         }
     });
+    const [isLoading, setIsLoading] = useState(true)
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+    const totalPages = Math.ceil(data.length / itemsPerPage);
 
     useEffect(() => {
         const storedSessionString = localStorage.getItem('userSession');
@@ -34,7 +39,7 @@ function UserPosts() {
 
     useEffect(()=>{
         postSubmit();
-        },[session, storedSession])
+        },[session, storedSession, currentPage])
 
 
     const postSubmit = async () => {
@@ -51,6 +56,7 @@ function UserPosts() {
             if (response.ok) {
                 console.log('GET request successful');
                 setData(data);
+                setIsLoading(false);
             } else {
                 console.error('GET request failed');
             }
@@ -59,12 +65,25 @@ function UserPosts() {
         }
     }
 
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentData = data.slice(startIndex, endIndex);
+
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+    };
+
     return (
         <div>
             <Top/>
         <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
             <h1 className='text-4xl font-semibold '>{storedSession.user.name}님이 쓴 글</h1>
             <div>총 글의 개수: {data.length}개</div>
+            {isLoading ? (
+                <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+            ):(
             <Table className="table table-striped table-bordered">
                 <thead>
                 <tr>
@@ -75,7 +94,7 @@ function UserPosts() {
                 </tr>
                 </thead>
                 <tbody>
-                {data.map((item) => (
+                {currentData.map((item) => (
                     <tr key={item.id}>
                         <td>{item.id}</td>
                         <td className="td-title">
@@ -87,6 +106,12 @@ function UserPosts() {
                 ))}
                 </tbody>
             </Table>
+                )}
+            <MyPagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+            />
         </div>
         </div>
     );
