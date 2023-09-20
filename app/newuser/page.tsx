@@ -16,6 +16,7 @@ function NewUser() {
     const [emailTrueChecked, setEmailTrueChecked] = useState(false);
     const [alertText, setAlertText] = useState('');
     const [showAlert, setShowAlert] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
 
     useEffect(() => {
         if (showAlert) {
@@ -25,9 +26,12 @@ function NewUser() {
         }
     },[showAlert]);
 
-    const showAlertWithText = (text) => {
+    const showAlertWithText = (text, type) => {
         setAlertText(text);
         setShowAlert(true);
+        if (type === 'success') {
+            setIsSuccess(true)
+        }
     }
 
     const handleCloseAlert = () => {
@@ -49,23 +53,23 @@ function NewUser() {
 
                 if (response.ok) {
                     console.log('POST request successful');
-                    showAlertWithText("계정이 성공적으로 생성되었습니다!")
+                    showAlertWithText("계정이 성공적으로 생성되었습니다!", 'success')
                 }
         } else if (!data.name) {
                 console.error('POST request failed');
-            showAlertWithText("사용자 이름을 작성해 주세요.")
-        } else if (isEmailTaken || !emailChecked) {
-            console.error('POST request failed');
-            showAlertWithText("이메일 중복을 체크해 주세요.")
-        } else if (!data.password) {
-            console.error('POST request failed');
-            showAlertWithText("비밀번호를 입력해주세요")
+            showAlertWithText("사용자 이름을 작성해 주세요.", 'fail')
         } else if (!data.birthday) {
             console.error('POST request failed');
-            showAlertWithText("생년월일을 입력해주세요")
+            showAlertWithText("생년월일을 입력해주세요", 'fail')
+        } else if (isEmailTaken || !emailChecked) {
+            console.error('POST request failed');
+            showAlertWithText("이메일 중복을 체크해 주세요.", 'fail')
+        } else if (!data.password) {
+            console.error('POST request failed');
+            showAlertWithText("비밀번호를 입력해주세요", 'fail')
         } else {
             console.error('POST request failed');
-            showAlertWithText("계정 생성에 실패했습니다.")
+            showAlertWithText("계정 생성에 실패했습니다.", 'fail')
         }
         } catch (error) {
             console.error('Error:', error);
@@ -80,7 +84,7 @@ function NewUser() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const isMailTrue = emailRegex.test(data.email);
         if (!isMailTrue) {
-            showAlertWithText("올바른 이메일 주소를 입력하세요.")
+            showAlertWithText("올바른 이메일 주소를 입력하세요.", 'fail')
             setEmailTrueChecked(false);
         } else {
             setEmailTrueChecked(true);
@@ -114,7 +118,30 @@ function NewUser() {
     return (
         <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
             <Top/>
-            {showAlert && (
+            {showAlert && isSuccess && (
+                <Alert
+                    variant="success"
+                    dismissible
+                    className="slide-down-alert"
+                    style={{
+                        position: 'absolute',
+                        top: '10px',
+                        right: '200px',
+                        zIndex: 9999,
+                    }}
+                >
+                    <Alert.Heading>성공 알림</Alert.Heading>
+                    <p>{alertText}</p>
+                    <Button
+                        variant="outline-success"
+                        className="position-relative start-50 translate-middle-x mb-3"
+                        onClick={handleCloseAlert}
+                    >
+                        닫기
+                    </Button>
+                </Alert>
+            )}
+            {showAlert && !isSuccess && (
                 <Alert
                     variant="warning"
                     dismissible
@@ -126,7 +153,7 @@ function NewUser() {
                         zIndex: 9999,
                     }}
                 >
-                    <Alert.Heading>알림</Alert.Heading>
+                    <Alert.Heading>실패 알림</Alert.Heading>
                     <p>{alertText}</p>
                     <Button
                         variant="outline-warning"
