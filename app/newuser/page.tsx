@@ -31,6 +31,8 @@ function NewUser() {
         setShowAlert(true);
         if (type === 'success') {
             setIsSuccess(true)
+        } else {
+            setIsSuccess(false);
         }
     }
 
@@ -188,7 +190,7 @@ function NewUser() {
                     htmlFor='birthday'
                     className='block text-sm text-gray-800 dark:text-gray-500'
                 >
-                    Name
+                    Birthday
                 </label>
                 <div className='mt-2'>
                     <input

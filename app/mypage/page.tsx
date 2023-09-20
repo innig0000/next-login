@@ -57,6 +57,8 @@ const MyPage = () => {
         setShowAlert(true);
         if (type === 'success') {
             setIsSuccess(true)
+        } else {
+            setIsSuccess(false);
         }
     }
 

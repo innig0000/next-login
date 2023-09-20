@@ -23,7 +23,9 @@ const PassWordReset = () => {
         setAlertText(text);
         setShowAlert(true);
         if (type === 'success') {
-            setIsSuccess(true)
+            setIsSuccess(true);
+        } else {
+            setIsSuccess(false);
         }
     }
 
