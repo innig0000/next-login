@@ -13,6 +13,7 @@ const MyPage = () => {
             id: "",
             name: "",
             email: "",
+            bday: "",
         }
     });
     const [alertText, setAlertText] = useState('');
@@ -49,6 +50,7 @@ const MyPage = () => {
     const id = storedSession.user.id;
     const name = storedSession.user.name;
     const email = storedSession.user.email;
+    const bday = storedSession.user.bday;
 
     const showAlertWithText = (text, type) => {
         setAlertText(text);
@@ -159,6 +161,10 @@ const MyPage = () => {
                         <tr>
                             <th scope="row">이메일 주소:</th>
                             <td>{email}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">생년월일:</th>
+                            <td>{bday}</td>
                         </tr>
                         <tr>
                             <th scope="row">비밀번호 변경하기:</th>

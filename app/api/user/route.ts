@@ -5,6 +5,7 @@ interface RequestBody {
     name: string;
     email: string;
     password: string;
+    birthday: string;
 }
 
 export async function POST(request: Request) {
@@ -15,9 +16,10 @@ export async function POST(request: Request) {
             name: body.name,
             email: body.email,
             password: await bcrypt.hash(body.password, 10),
+            bday: body.birthday,
         },
     })
 
-    const { password, ...result } = user
+    const { bday, ...result } = user
     return new Response(JSON.stringify(result))
 }

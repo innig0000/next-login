@@ -35,3 +35,5 @@ yarn-error.log*
 next-env.d.ts
 /prisma/migrations/20230906004516_add_create_at/migration.sql
 /prisma/migrations/20230906040353_new_coloumn/migration.sql
+/prisma/migrations/20230919074838_add_bday/migration.sql
+/prisma/migrations/migration_lock.toml
