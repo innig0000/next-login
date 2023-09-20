@@ -9,6 +9,7 @@ function NewUser() {
         email: "",
         name: "",
         password: "",
+        birthday: "",
     });
     const [isEmailTaken, setIsEmailTaken] = useState(false);
     const [emailChecked, setEmailChecked] = useState(false);
@@ -37,7 +38,7 @@ function NewUser() {
         e.preventDefault();
 
         try {
-        if (!isEmailTaken && emailChecked && data.name && data.password) {
+        if (!isEmailTaken && emailChecked && data.name && data.password && data.birthday) {
                 const response = await fetch('/api/user', {
                     method: 'POST',
                     headers: {
@@ -59,6 +60,9 @@ function NewUser() {
         } else if (!data.password) {
             console.error('POST request failed');
             showAlertWithText("비밀번호를 입력해주세요")
+        } else if (!data.birthday) {
+            console.error('POST request failed');
+            showAlertWithText("생년월일을 입력해주세요")
         } else {
             console.error('POST request failed');
             showAlertWithText("계정 생성에 실패했습니다.")
@@ -98,6 +102,14 @@ function NewUser() {
             console.error('Error checking email:', error);
         }
     };
+
+    const getCurrentDate = () => {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, "0");
+        const day = String(today.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+    }
 
     return (
         <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
@@ -143,6 +155,25 @@ function NewUser() {
                 className='mt-2 block w-full rounded-md border bg-white px-4 py-2 text-black-50 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 white:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
             />
             </div>
+            </div>
+            <div style={{padding: "10px"}}>
+                <label
+                    htmlFor='birthday'
+                    className='block text-sm text-gray-800 dark:text-gray-500'
+                >
+                    Name
+                </label>
+                <div className='mt-2'>
+                    <input
+                        type="date"
+                        name="birthday"
+                        placeholder="Birthday"
+                        onChange={handleInputChange}
+                        className='mt-2 block w-full rounded-md border bg-white px-4 py-2 text-black-50 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 white:bg-gray-800 dark:text-gray-300 dark:focus:border-blue-300'
+                        min="1900-01-01"
+                        max={getCurrentDate()}
+                    />
+                </div>
             </div>
             <div style={{padding: "10px"}}>
             <label
