@@ -123,6 +123,7 @@ th {
   padding: 1rem;
   background-color: whitesmoke;
   color: white;
+  z-index: 100;
 }
 
 .nav-list {
@@ -191,11 +192,6 @@ th {
   width: 90%; /* Could be more or less, depending on screen size */
 }
 
-div {
-  color: #6c757d;
-  font-family: Lato;
-}
-
 .slide-down-alert {
   animation: slide-down 0.5s ease-in-out;
 }
@@ -214,6 +210,16 @@ h1 {
   color: #6c757d;
 }
 
+p {
+  padding: 10px;
+  font-size: 30px;
+}
+
+div {
+  color: #6c757d;
+  font-family: Lato;
+}
+
 .pagination {
   background-color: #6c757d;
 }
@@ -227,3 +233,6 @@ h1 {
 .pagination .page-item:not(.active) .page-link {
   color: grey;
 }
+
+
+

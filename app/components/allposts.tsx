@@ -5,7 +5,7 @@ import {Spinner, Table} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyPagination from "@/app/components/MyPagination";
 
-const AllPost = () => {
+const AllPosts = () => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1);
@@ -88,4 +88,4 @@ const AllPost = () => {
     )
 }
 
-export default AllPost;
+export default AllPosts;

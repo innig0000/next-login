@@ -45,6 +45,9 @@ const Top = () => {
                 <Link href="/">
                     <Button variant="outline-dark">홈</Button>
                 </Link>
+                <Link href="/allpost">
+                    <Button variant="outline-secondary">모든 글</Button>
+                </Link>
                 <Link href="/posting">
                     <Button variant="outline-secondary">새 글 쓰기</Button>
                 </Link>
@@ -75,8 +78,9 @@ const Top = () => {
                         <Link href="/">
                             <Button variant="outline-dark">홈</Button>
                         </Link>
-
-
+                        <Link href="/allpost">
+                            <Button variant="outline-secondary">모든 글</Button>
+                        </Link>
                         <Link href="/signin">
                     <Button variant="outline-secondary">로그인</Button>
                 </Link>

@@ -10,7 +10,7 @@ function SignInButton() {
     if (session && session.user) {
         return (
             <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
-                <Link href="/">
+                <Link href="/allpost">
                     <button className="px-12 py-4 border rounded-xl bg-pink-300">
                         모든 글 보기
                     </button>

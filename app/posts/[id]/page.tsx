@@ -109,14 +109,14 @@ const Posts = ({ params }: { params: { id: string } }) => {
                                 내 글 목록
                             </Button>
                         </Link>
-                        <Link href="/">
+                        <Link href="/allpost">
                             <Button variant="outline-secondary" className="mx-2">
                                 전체 목록
                             </Button>
                         </Link>
                         </div>
                         :
-                        <Link href="/">
+                        <Link href="/allpost">
                             <Button variant="outline-secondary" className="mx-2">
                                 전체 목록
                             </Button>

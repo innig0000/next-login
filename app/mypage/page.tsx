@@ -212,7 +212,7 @@ const MyPage = () => {
                                        </div>
                                    </div>
                                    <Button
-                                       variant="outline-secondary"
+                                       variant="outline-info"
                                        type="submit"
                                    >
                                        Submit
