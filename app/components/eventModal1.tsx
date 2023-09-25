@@ -7,6 +7,7 @@ const EventModal1 = () => {
     const [show, setShow] = useState(false);
     const [showSubModal, setShowSubModal] = useState(false);
     const [showSubModal2, setShowSubModal2] = useState(false);
+    console.debug(new Date().toISOString());
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -18,34 +19,41 @@ const EventModal1 = () => {
     const closeSubModal2 = () => setShowSubModal2(false);
 
     useEffect(() => {
-        const hideEventModal = document.cookie.includes("hideEventModal=true");
-        const hideEventModal2 = document.cookie.includes("hideEventModal2=true");
-        const hideEventModal3 = document.cookie.includes("hideEventModal3=true");
-        if(!hideEventModal2) {
+        const lastDisplayTime = localStorage.getItem('lastModalDisplayTime');
+        const lastDisplayTime2 = localStorage.getItem('lastModalDisplayTime2');
+        const lastDisplayTime3 = localStorage.getItem('lastModalDisplayTime3');
+
+        if (!lastDisplayTime || isPast24Hours(lastDisplayTime)) {
             handleShow();
         }
-        if(!hideEventModal) {
+        if (!lastDisplayTime2 || isPast24Hours(lastDisplayTime2)) {
             openSubModal();
         }
-        if(!hideEventModal3) {
+        if (!lastDisplayTime3 || isPast24Hours(lastDisplayTime3)) {
             openSubModal2()
         }
-    },[])
+    },[]);
 
     const handleHideForToday = () => {
-        document.cookie = "hideEventModal=true; expires=24h";
-        closeSubModal();
-    }
+        setShow(false);
+        localStorage.setItem('lastModalDisplayTime', new Date().toISOString());
+    };
 
     const handleHideForToday2 = () => {
-        document.cookie = "hideEventModal2=true; expires=24h";
-        handleClose();
-    }
+        setShowSubModal(false);
+        localStorage.setItem('lastModalDisplayTime2', new Date().toISOString());
+    };
 
     const handleHideForToday3 = () => {
-        document.cookie = "hideEventModal3=true; expires=24h";
-        closeSubModal2();
-    }
+        setShowSubModal2(false);
+        localStorage.setItem('lastModalDisplayTime3', new Date().toISOString());
+    };
+
+    const isPast24Hours = (timeString) => {
+        const lastDisplayTime = new Date(timeString);
+        const currentTime = new Date();
+        return currentTime - lastDisplayTime >= 24 * 60 * 60 * 1000;
+    };
 
     return <div>
         <Modal show={show} onHide={handleClose}>
@@ -61,7 +69,7 @@ const EventModal1 = () => {
                 <p> 아름다운 글들을 한 아름 모아보세요. </p>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="outline-info" onClick={handleHideForToday2}>
+                <Button variant="outline-info" onClick={handleHideForToday}>
                     오늘 하루 그만 보기
                 </Button>
                 <Button variant="outline-secondary" onClick={handleClose}>
@@ -89,7 +97,7 @@ const EventModal1 = () => {
                     <p> 많은 관심 부탁드립니다.</p>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="outline-info" onClick={handleHideForToday}>
+                    <Button variant="outline-info" onClick={handleHideForToday2}>
                         오늘 하루 그만 보기
                     </Button>
                     <Button variant="outline-secondary" onClick={closeSubModal}>
