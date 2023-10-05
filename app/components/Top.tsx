@@ -4,6 +4,7 @@ import {signOut, useSession} from "next-auth/react";
 import {Button} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useEffect, useState} from "react";
+import {useRouter} from "next/navigation";
 
 const Top = () => {
 
@@ -15,6 +16,7 @@ const Top = () => {
             email: "",
         }
     });
+    const router = useRouter();
 
     useEffect(() => {
         const storedSessionString = localStorage.getItem('userSession');
@@ -34,6 +36,11 @@ const Top = () => {
         }
     }, [session]);
 
+    const deleteLocalStorage = () => {
+        localStorage.removeItem('lastPage');
+        router.push("/allpost");
+    }
+
     if (storedSession && storedSession.user) {
     return (
         <header className="header">
@@ -45,14 +52,12 @@ const Top = () => {
                 <Link href="/">
                     <Button variant="outline-dark">홈</Button>
                 </Link>
-                <Link href="/allpost">
-                    <Button variant="outline-secondary">모든 글</Button>
-                </Link>
+                    <Button variant="outline-secondary" onClick={deleteLocalStorage}>모든 글</Button>
                 <Link href="/posting">
                     <Button variant="outline-secondary">새 글 쓰기</Button>
                 </Link>
                 <Link href="/userposts">
-                    <Button variant="outline-secondary">{storedSession.user.name}님이 쓴 글</Button>
+                    <Button variant="outline-secondary" onClick={deleteLocalStorage}>{storedSession.user.name}님이 쓴 글</Button>
                 </Link>
                 <Link href="/mypage">
                        <Button variant="outline-secondary">마이페이지</Button>
@@ -78,9 +83,7 @@ const Top = () => {
                         <Link href="/">
                             <Button variant="outline-dark">홈</Button>
                         </Link>
-                        <Link href="/allpost">
-                            <Button variant="outline-secondary">모든 글</Button>
-                        </Link>
+                            <Button variant="outline-secondary" onClick={deleteLocalStorage}>모든 글</Button>
                         <Link href="/signin">
                     <Button variant="outline-secondary">로그인</Button>
                 </Link>

@@ -13,7 +13,10 @@ const AllPosts = () => {
     const totalPages = Math.ceil(data.length / itemsPerPage);
 
     useEffect(()=>{
-        postSubmit()
+        const lastPage = localStorage.getItem('lastPage');
+        const currentPage = parseInt(lastPage, 10) || 1;
+        setCurrentPage(currentPage);
+            postSubmit()
     },[currentPage])
 
     const postSubmit = async () => {
@@ -43,6 +46,7 @@ const AllPosts = () => {
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
+        localStorage.setItem('lastPage', newPage);
     };
 
     return (
@@ -69,7 +73,7 @@ const AllPosts = () => {
                         <tr key={item.id}>
                             <td>{item.id}</td>
                             <td className="td-title">
-                                <Link href={`/posts/${item.id}`}><button className="text-black">{item.title}</button></Link>
+                                <Link href={`/totalPosts/${item.id}`}><button className="text-black">{item.title}</button></Link>
                             </td>
                             <td>{item.author.name}</td>
                             <td>{item.createdAt.substring(0, 10)}</td>

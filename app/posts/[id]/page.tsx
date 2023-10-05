@@ -102,26 +102,13 @@ const Posts = ({ params }: { params: { id: string } }) => {
                 </div>
 
                 <div style={{ display: "flex", justifyContent: "center"}}>
-                    {session ?
                         <div>
                         <Link href="/userposts">
                             <Button variant="outline-secondary" className="mx-2">
                                 내 글 목록
                             </Button>
                         </Link>
-                        <Link href="/allpost">
-                            <Button variant="outline-secondary" className="mx-2">
-                                전체 목록
-                            </Button>
-                        </Link>
                         </div>
-                        :
-                        <Link href="/allpost">
-                            <Button variant="outline-secondary" className="mx-2">
-                                전체 목록
-                            </Button>
-                        </Link>
-                    }
                 {session && session.user.name === data.author.name && (
                     <div>
                         <div>

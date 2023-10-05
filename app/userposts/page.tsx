@@ -38,6 +38,9 @@ function UserPosts() {
     }, [session]);
 
     useEffect(()=>{
+        const lastPage = localStorage.getItem('lastPage');
+        const currentPage = parseInt(lastPage, 10) || 1;
+        setCurrentPage(currentPage);
         postSubmit();
         },[session, storedSession, currentPage])
 
@@ -71,6 +74,7 @@ function UserPosts() {
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
+        localStorage.setItem('lastPage', newPage);
     };
 
     return (

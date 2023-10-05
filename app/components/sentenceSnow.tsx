@@ -9,7 +9,7 @@ const SentenceSnow = () => {
 
     const onScroll = () => {
         setPosition(window.scrollY);
-        console.debug(window.scrollY);
+       // console.debug(window.scrollY);
     };
 
     useEffect(() => {
@@ -23,10 +23,10 @@ const SentenceSnow = () => {
         <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
             <img src="/firewall.jpeg" style={{width: "570px", height: "auto", opacity: `${1-position/500}`}}/>
             <img src="/arrow_down_icon.png" style={{width: "50px", height: "auto", opacity: `${1-position/500}`}}/>
-            <p style={{positionY: position / -200, opacity: `${position / 500}`, transform: `translateY(${position / -3}px)`}}>
+            <div style={{fontSize: '30px', positionY: position / -200, opacity: `${position / 500}`, transform: `translateY(${position / -3}px)`}}>
                 환영합니다.
-            </p>
-            <p style={{opacity: `${position / 700}`, transform: `translateY(${position / -4}px)`}}>
+            </div>
+            <p style={{fontSize: '30px',opacity: `${position / 700}`, transform: `translateY(${position / -4}px)`}}>
                 <Link href="/allpost">
                     <Button variant="outline-secondary">
                         모든 글
@@ -34,7 +34,7 @@ const SentenceSnow = () => {
                 </Link>
                 을 클릭하여 여러분이 작성한 글들을 읽어보세요.
             </p>
-            <p style={{opacity: `${position / 800}`, transform: `translateY(${position / -5}px)`}}>
+            <p style={{fontSize: '30px',opacity: `${position / 800}`, transform: `translateY(${position / -5}px)`}}>
                 <Link href="/newuser">
                     <Button variant="outline-secondary">
                         회원 가입
@@ -50,10 +50,10 @@ const SentenceSnow = () => {
             </p>
                 <img src="/reading.jpeg" alt="배경 이미지" style={{opacity: `${(position-500)/900}`, transform: `translateY(${position / -20}px)`}}/>
             <div>
-            <p style={{opacity: `${(position-1500)/600}`, transform: `translateY(${1800-position}px)`}}>"좋은 글은 독자의 생각을 바꾸고,</p>
-            <p style={{opacity: `${(position-1500)/600}`, transform: `translateY(${(1800-position) / 1.5}px)`}}>마음을 움직이며,</p>
-            <p style={{opacity: `${(position-1500)/600}`, transform: `translateY(${(1800-position) / 3}px)`}}>세상을 보는 시선을 바꿔준다."</p>
-            <p style={{opacity: `${(position-1500)/600}`, transform: `translateY(${(1800-position) / 6}px)`}}>- George Orwell</p>
+            <p style={{fontSize: '30px', opacity: `${(position-1500)/600}`, transform: `translateY(${1800-position}px)`}}>"좋은 글은 독자의 생각을 바꾸고,</p>
+            <p style={{fontSize: '30px', opacity: `${(position-1500)/600}`, transform: `translateY(${(1800-position) / 1.5}px)`}}>마음을 움직이며,</p>
+            <p style={{fontSize: '30px', opacity: `${(position-1500)/600}`, transform: `translateY(${(1800-position) / 3}px)`}}>세상을 보는 시선을 바꿔준다."</p>
+            <p style={{fontSize: '30px', opacity: `${(position-1500)/600}`, transform: `translateY(${(1800-position) / 6}px)`}}>- George Orwell</p>
             <p></p>
             <p></p>
             <p></p>
