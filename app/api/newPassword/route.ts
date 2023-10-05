@@ -22,15 +22,15 @@ export async function POST(request: Request) {
     const isPasswordValid = await bcrypt.compare(body.password, user.password)
 
     if(!isPasswordValid) {
-        return new Response(JSON.stringify({error:'비밀번호가 틀립니다.'}), { status: 400 });
+        return new Response(JSON.stringify('비밀번호가 틀립니다.'), { status: 400 });
     }
 
     if (body.newPassword !== body.checkPassword) {
-        return new Response(JSON.stringify({error: '새 비밀번호와 확인 비밀번호가 일치하지 않습니다.'}), {status: 400});
+        return new Response(JSON.stringify('새 비밀번호와 확인 비밀번호가 일치하지 않습니다.'), {status: 400});
     }
 
     if (body.password === body.newPassword) {
-        return new Response(JSON.stringify({error: '기존 비밀번호와 다른 새로운 비밀번호를 입력하세요.'}), {status: 400});
+        return new Response(JSON.stringify('기존 비밀번호와 다른 새로운 비밀번호를 입력하세요.'), {status: 400});
     }
 
             await prisma.user.update({
@@ -45,6 +45,6 @@ export async function POST(request: Request) {
         return new Response(JSON.stringify({ message: '비밀번호가 업데이트 되었습니다.' }))
     } catch (error) {
      console.error('에러:', error);
-     return new Response(JSON.stringify({ error: '서버 오류가 발생했습니다.'}), {status: 500});
+     return new Response(JSON.stringify('서버 오류가 발생했습니다.'), {status: 500});
     }
 }
