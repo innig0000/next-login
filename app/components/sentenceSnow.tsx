@@ -1,7 +1,7 @@
 'use client'
 import {useEffect, useState} from "react";
 import Link from "next/link";
-import {Button} from "react-bootstrap";
+import {Button, Card, Col, Container, Row} from "react-bootstrap";
 
 const SentenceSnow = () => {
 
@@ -9,7 +9,7 @@ const SentenceSnow = () => {
 
     const onScroll = () => {
         setPosition(window.scrollY);
-       // console.debug(window.scrollY);
+      //  console.debug(window.scrollY);
     };
 
     useEffect(() => {
@@ -21,12 +21,23 @@ const SentenceSnow = () => {
 
     return (
         <main className='flex min-h-screen flex-col items-center space-y-10 p-24'>
-            <img src="/firewall.jpeg" style={{width: "570px", height: "auto", opacity: `${1-position/500}`}}/>
-            <img src="/arrow_down_icon.png" style={{width: "50px", height: "auto", opacity: `${1-position/500}`}}/>
-            <div style={{fontSize: '30px', positionY: position / -200, opacity: `${position / 500}`, transform: `translateY(${position / -3}px)`}}>
+            <Container>
+                <Row>
+                    <Col>
+            <Card.Img src="/firewall.jpeg" style={{ opacity: `${1-position/500}`}}/>
+                    </Col>
+                   <Col>
+            <Card body style={{ border: 'none'}}>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
+            <p body style={{fontSize: '30px', transform: `translateY(${position * -0.01}px)`, opacity: `${1-position/500}`}}>
                 환영합니다.
-            </div>
-            <p style={{fontSize: '30px',opacity: `${position / 700}`, transform: `translateY(${position / -4}px)`}}>
+            </p>
+                <p></p>
+                <p></p>
+            <p style={{fontSize: '30px', transform: `translateY(${position * -0.05}px)`, opacity: `${1-position/500}`}}>
                 <Link href="/allpost">
                     <Button variant="outline-secondary">
                         모든 글
@@ -34,7 +45,9 @@ const SentenceSnow = () => {
                 </Link>
                 을 클릭하여 여러분이 작성한 글들을 읽어보세요.
             </p>
-            <p style={{fontSize: '30px',opacity: `${position / 800}`, transform: `translateY(${position / -5}px)`}}>
+                <p></p>
+                <p></p>
+            <p body style={{fontSize: '30px', transform: `translateY(${position * -0.09}px)`, opacity: `${1-position/500}`}}>
                 <Link href="/newuser">
                     <Button variant="outline-secondary">
                         회원 가입
@@ -48,16 +61,38 @@ const SentenceSnow = () => {
                 </Link>
                 을 하면 글을 쓸 수 있어요.
             </p>
-                <img src="/reading.jpeg" alt="배경 이미지" style={{opacity: `${(position-500)/900}`, transform: `translateY(${position / -20}px)`}}/>
-            <div>
-            <p style={{fontSize: '30px', opacity: `${(position-1500)/600}`, transform: `translateY(${1800-position}px)`}}>"좋은 글은 독자의 생각을 바꾸고,</p>
-            <p style={{fontSize: '30px', opacity: `${(position-1500)/600}`, transform: `translateY(${(1800-position) / 1.5}px)`}}>마음을 움직이며,</p>
-            <p style={{fontSize: '30px', opacity: `${(position-1500)/600}`, transform: `translateY(${(1800-position) / 3}px)`}}>세상을 보는 시선을 바꿔준다."</p>
-            <p style={{fontSize: '30px', opacity: `${(position-1500)/600}`, transform: `translateY(${(1800-position) / 6}px)`}}>- George Orwell</p>
-            <p></p>
-            <p></p>
-            <p></p>
-            </div>
+            </Card>
+                   </Col>
+                   </Row>
+                <Row>
+                <Col md={{ span: 1, offset: 6}}>
+                <Card.Img src="/arrow_down_icon.png" style={{width: "50px", height: "auto", opacity: `${1-position/100}`}}/>
+            </Col>
+        </Row>
+               <Row>
+                   <Col>
+                <Card body style={{ border: 'none'}}>
+            <p style={{fontSize: '30px', opacity: `${(position-300)/300}`, transform: `translateY(${(500-position) * -0.01}px)`}}>"좋은 글은 독자의 생각을 바꾸고,</p>
+            <p style={{fontSize: '30px', opacity: `${(position-300)/300}`, transform: `translateY(${(500-position) * -0.03}px)`}}>마음을 움직이며,</p>
+            <p style={{fontSize: '30px', opacity: `${(position-300)/300}`, transform: `translateY(${(500-position) * -0.05}px)`}}>세상을 보는 시선을 바꿔준다."</p>
+            <p style={{fontSize: '30px', opacity: `${(position-300)/300}`, transform: `translateY(${(500-position) * -0.07}px)`}}>- George Orwell</p>
+                </Card>
+                   </Col>
+                   <Col>
+                <Card.Img src="/reading.jpeg" alt="reading" style={{width: "570px", height: "auto", opacity: `${(position-400)/500}`, transform: `translateY(${position / -3}px)`}}/>
+                   </Col>
+            </Row>
+                <Row>
+                    <Col md={1}>
+                        <Card.Text style={{ transform: 'rotate(270deg)'}}>
+                            Copyright 2023. SlowCatBibi All rights reserved.
+                        </Card.Text>
+                    </Col>
+                    <Col md={{ span: 6, offset: 1}}>
+                        <Card.Img src="writing.jpeg" alt="writing" style={{transform: `translateX(${position / 10}px)`}}/>
+                    </Col>
+                </Row>
+            </Container>
         </main>
     )
 }

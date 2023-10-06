@@ -120,9 +120,8 @@ th {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
   background-color: whitesmoke;
-  color: white;
+  color: black;
   z-index: 100;
 }
 
@@ -233,5 +232,17 @@ div {
   color: grey;
 }
 
+.logo {
+  display: flex;
+  width: auto;
+  height: 70px;
+  top: 0;
+  left: 0;
+  padding: 0;
+}
 
-
+.logo img {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}

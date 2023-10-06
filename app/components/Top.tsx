@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link";
 import {signOut, useSession} from "next-auth/react";
-import {Button} from "react-bootstrap";
+import {Button, Card} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
@@ -44,6 +44,11 @@ const Top = () => {
     if (storedSession && storedSession.user) {
     return (
         <header className="header">
+            <Link href="/">
+            <div className="logo">
+                <img src="/Logo.jpg" alt="Logo"/>
+            </div>
+            </Link>
             <nav className="nav">
                 <ul className="nav-list">
                 </ul>
@@ -62,12 +67,14 @@ const Top = () => {
                 <Link href="/mypage">
                        <Button variant="outline-secondary">마이페이지</Button>
                 </Link>
+                <div style={{paddingRight: "1rem"}}>
                 <Button
                     variant="outline-secondary"
                     onClick={() => signOut()}
                 >
                     로그아웃
                 </Button>
+                </div>
             </div>
         </header>
                 );
@@ -75,6 +82,11 @@ const Top = () => {
 
                 return (
                 <header className="header">
+                    <Link href="/">
+                    <div className="logo">
+                        <img src="/Logo.jpg" alt="Logo"/>
+                    </div>
+                    </Link>
                     <nav className="nav">
                         <ul className="nav-list">
                         </ul>
@@ -87,8 +99,8 @@ const Top = () => {
                         <Link href="/signin">
                     <Button variant="outline-secondary">로그인</Button>
                 </Link>
-                <Link href="/newuser">
-                    <Button variant="outline-secondary">회원가입</Button>
+                <Link href="/newuser"  style={{paddingRight: "1rem"}}>
+                    <Button variant="outline-secondary" >회원가입</Button>
                 </Link>
             </div>
         </header>
