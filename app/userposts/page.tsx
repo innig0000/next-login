@@ -8,7 +8,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import MyPagination from "@/app/components/MyPagination";
 
 function UserPosts() {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({
+        data: [],
+        total_items: 0,
+        current_page: 1,
+        total_pages:0
+    });
     const { data: session } = useSession();
     const [storedSession, setStoredSession] = useState({
         user: {
@@ -19,8 +24,6 @@ function UserPosts() {
     });
     const [isLoading, setIsLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 10;
-    const totalPages = Math.ceil(data.length / itemsPerPage);
 
     useEffect(() => {
         const storedSessionString = localStorage.getItem('userSession');
@@ -39,15 +42,15 @@ function UserPosts() {
 
     useEffect(()=>{
         const lastPage = localStorage.getItem('lastPage');
-        const currentPage = parseInt(lastPage, 10) || 1;
-        setCurrentPage(currentPage);
+        const page = parseInt(lastPage, 10) || 1;
+        setCurrentPage(page);
         postSubmit();
         },[session, storedSession, currentPage])
 
 
     const postSubmit = async () => {
         try {
-            const response = await fetch(`api/user/${storedSession.user.id}`, {
+            const response = await fetch(`api/user/${storedSession.user.id}?page=${currentPage}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -68,9 +71,6 @@ function UserPosts() {
         }
     }
 
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const currentData = data.slice(startIndex, endIndex);
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -82,7 +82,7 @@ function UserPosts() {
             <Top/>
         <div className='flex min-h-screen flex-col items-center space-y-10 p-24'>
             <h1 className='text-4xl font-semibold '>{storedSession.user.name}님이 쓴 글</h1>
-            <div>총 글의 개수: {data.length}개</div>
+            <div>총 글의 개수: {data.total_items}개</div>
             {isLoading ? (
                 <Spinner animation="border" role="status">
                     <span className="visually-hidden">Loading...</span>
@@ -98,7 +98,7 @@ function UserPosts() {
                 </tr>
                 </thead>
                 <tbody>
-                {currentData.map((item) => (
+                {data.data.map((item) => (
                     <tr key={item.id}>
                         <td>{item.id}</td>
                         <td className="td-title">
@@ -112,8 +112,8 @@ function UserPosts() {
             </Table>
                 )}
             <MyPagination
-                currentPage={currentPage}
-                totalPages={totalPages}
+                currentPage={data.current_page}
+                totalPages={data.total_pages}
                 onPageChange={handlePageChange}
             />
         </div>

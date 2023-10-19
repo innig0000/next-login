@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Pagination} from "react-bootstrap";
 
 const MyPagination = ({currentPage, totalPages, onPageChange}) => {
@@ -8,7 +8,7 @@ const MyPagination = ({currentPage, totalPages, onPageChange}) => {
         items.push(
             <Pagination.Item
                 key={number}
-                active={number === currentPage}
+                active={number === parseInt(currentPage)}
                 onClick={()=>onPageChange(number)}
             >
                 {number}

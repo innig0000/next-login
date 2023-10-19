@@ -7,7 +7,6 @@ const EventModal1 = () => {
     const [show, setShow] = useState(false);
     const [showSubModal, setShowSubModal] = useState(false);
     const [showSubModal2, setShowSubModal2] = useState(false);
-    console.debug(new Date().toISOString());
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
