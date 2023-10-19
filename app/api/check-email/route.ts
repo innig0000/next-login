@@ -7,7 +7,7 @@ export async function POST( request: Request ) {
         const users = await prisma.user.findMany({
         })
 
-            const isEmailTaken = users.some(user => user.email === body.email);
+            const isEmailTaken = users.some(user => user.email === body);
 
             return new Response(JSON.stringify({ isEmailTaken }),{
                 headers: { 'Content-Type': 'application/json'},
