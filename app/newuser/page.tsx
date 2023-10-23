@@ -17,7 +17,7 @@ function NewUser() {
         name: yup.string().required("사용자 이름을 작성해 주세요."),
         birthday: yup.date().required("생년월일을 입력해주세요"),
         email: yup.string().required("이메일 주소를 입력해 주세요."),
-        password: yup.string().required("비밀번호를 입력해주세요"),
+        password: yup.string().min(6, "비밀번호는 6자리 이상 입력해야 합니다.").required("비밀번호를 입력해주세요"),
     })
     const formik = useFormik({
         initialValues: {
@@ -125,7 +125,7 @@ function NewUser() {
        } else if (formik.errors.email) {
            showAlertWithText(formik.errors.email)
        } else if (formik.errors.password) {
-           showAlertWithText(formik.errors.password)
+               showAlertWithText(formik.errors.password)
        }
     }
 
@@ -242,8 +242,8 @@ function NewUser() {
                 >
                     중복 체크
                 </Button>
-                {emailChecked && !isEmailTaken && emailTrueChecked && (<p className="text-success ml-2 mt-1">사용 가능한 이메일 입니다.</p>)}
-                {emailChecked && isEmailTaken && (<p className="text-danger ml-2 mt-1">이미 사용 중인 이메일입니다.</p>)}
+                {emailChecked && !isEmailTaken && emailTrueChecked && (<p style={{padding: "0px"}} className="text-success ml-2 mt-1">사용 가능한 이메일 입니다.</p>)}
+                {emailChecked && isEmailTaken && (<p style={{padding: "0px"}} className="text-danger ml-2 mt-1">이미 사용 중인 이메일입니다.</p>)}
             </div>
             </div>
             <div style={{padding: "10px"}}>
