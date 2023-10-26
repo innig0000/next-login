@@ -19,8 +19,8 @@ const AllPosts = () => {
         const lastPage = localStorage.getItem('lastPage');
         const page = parseInt(lastPage, 10) || 1;
         setCurrentPage(page);
-            postSubmit()
-    },[currentPage])
+        postSubmit();
+    },[currentPage, isLoading])
 
     const postSubmit = async () => {
         try {
