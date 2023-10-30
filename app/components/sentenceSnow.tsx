@@ -9,7 +9,6 @@ const SentenceSnow = () => {
 
     const onScroll = () => {
         setPosition(window.scrollY);
-      //  console.debug(window.scrollY);
     };
 
     useEffect(() => {
@@ -38,7 +37,7 @@ const SentenceSnow = () => {
                 <p></p>
                 <p></p>
             <p style={{fontSize: '30px', transform: `translateY(${position * -0.05}px)`, opacity: `${1-position/500}`}}>
-                <Link href="/allpost">
+                <Link href="/post-table-total">
                     <Button variant="outline-secondary">
                         모든 글
                     </Button>
@@ -48,13 +47,13 @@ const SentenceSnow = () => {
                 <p></p>
                 <p></p>
             <p body style={{fontSize: '30px', transform: `translateY(${position * -0.09}px)`, opacity: `${1-position/500}`}}>
-                <Link href="/newuser">
+                <Link href="/user-new">
                     <Button variant="outline-secondary">
                         회원 가입
                     </Button>
                 </Link>
                 &
-                <Link href="/signin">
+                <Link href="/user-login">
                     <Button variant="outline-secondary">
                         로그인
                     </Button>
@@ -66,7 +65,7 @@ const SentenceSnow = () => {
                    </Row>
                 <Row>
                 <Col md={{ span: 1, offset: 6}}>
-                <Card.Img src="/arrow_down_icon.png" style={{width: "50px", height: "auto", opacity: `${1-position/100}`}}/>
+                <Card.Img src="/downArrow.png" style={{width: "50px", height: "auto", opacity: `${1-position/100}`}}/>
             </Col>
         </Row>
                <Row>

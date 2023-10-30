@@ -24,7 +24,7 @@ const AllPosts = () => {
 
     const postSubmit = async () => {
         try {
-            const response = await fetch(`api/allposts?page=${currentPage}`, {
+            const response = await fetch(`api/post/allTable?page=${currentPage}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -72,7 +72,7 @@ const AllPosts = () => {
                         <tr key={item.id}>
                             <td>{item.id}</td>
                             <td className="td-title">
-                                <Link href={`/totalPosts/${item.id}`}><button className="text-black">{item.title}</button></Link>
+                                <Link href={`/post-read-total/${item.id}`}><button className="text-black">{item.title}</button></Link>
                             </td>
                             <td>{item.author.name}</td>
                             <td>{item.createdAt.substring(0, 10)}</td>

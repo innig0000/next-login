@@ -38,7 +38,7 @@ const Top = () => {
 
     const deleteLocalStorage = () => {
         localStorage.removeItem('lastPage');
-        router.push("/allpost");
+        router.push("/post-table-total");
     }
 
     if (storedSession && storedSession.user) {
@@ -58,13 +58,13 @@ const Top = () => {
                     <Button variant="outline-dark">홈</Button>
                 </Link>
                     <Button variant="outline-secondary" onClick={deleteLocalStorage}>모든 글</Button>
-                <Link href="/posting">
+                <Link href="/post-write">
                     <Button variant="outline-secondary">새 글 쓰기</Button>
                 </Link>
-                <Link href="/userposts">
+                <Link href="/post-table-mine">
                     <Button variant="outline-secondary" onClick={deleteLocalStorage}>{storedSession.user.name}님이 쓴 글</Button>
                 </Link>
-                <Link href="/mypage">
+                <Link href="/user-info">
                        <Button variant="outline-secondary">마이페이지</Button>
                 </Link>
                 <div style={{paddingRight: "1rem"}}>
@@ -96,10 +96,10 @@ const Top = () => {
                             <Button variant="outline-dark">홈</Button>
                         </Link>
                             <Button variant="outline-secondary" onClick={deleteLocalStorage}>모든 글</Button>
-                        <Link href="/signin">
+                        <Link href="/user-login">
                     <Button variant="outline-secondary">로그인</Button>
                 </Link>
-                <Link href="/newuser"  style={{paddingRight: "1rem"}}>
+                <Link href="/user-new"  style={{paddingRight: "1rem"}}>
                     <Button variant="outline-secondary" >회원가입</Button>
                 </Link>
             </div>

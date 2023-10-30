@@ -2,9 +2,9 @@ export { default } from 'next-auth/middleware'
 
 export const config = {
     matcher: [
-        '/userposts/:path*',
-        '/posting/:path*',
-        '/mypage/:path*',
-        '/editPost/:path*',
+        '/post-table-mine/:path*',
+        '/post-write/:path*',
+        '/user-info/:path*',
+        '/post-edit/:path*',
     ],
 }
