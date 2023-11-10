@@ -34,7 +34,7 @@ const Posting = () => {
 
             if (response.ok) {
                 console.log('POST request successful');
-                router.push(`/post-read-mine/${PostNumber}`)
+                router.push(`/post/read/mine/${PostNumber}`)
             } else {
                 console.error('POST request failed');
             }

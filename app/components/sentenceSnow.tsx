@@ -37,7 +37,7 @@ const SentenceSnow = () => {
                 <p></p>
                 <p></p>
             <p style={{fontSize: '30px', transform: `translateY(${position * -0.05}px)`, opacity: `${1-position/500}`}}>
-                <Link href="/post-table-total">
+                <Link href="/post/table/total">
                     <Button variant="outline-secondary">
                         모든 글
                     </Button>
@@ -47,13 +47,13 @@ const SentenceSnow = () => {
                 <p></p>
                 <p></p>
             <p body style={{fontSize: '30px', transform: `translateY(${position * -0.09}px)`, opacity: `${1-position/500}`}}>
-                <Link href="/user-new">
+                <Link href="/user/new">
                     <Button variant="outline-secondary">
                         회원 가입
                     </Button>
                 </Link>
                 &
-                <Link href="/user-login">
+                <Link href="/user/login">
                     <Button variant="outline-secondary">
                         로그인
                     </Button>

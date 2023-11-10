@@ -72,7 +72,7 @@ const TotalPosts = ({ params }: { params: { id: string } }) => {
 
                 <div style={{ display: "flex", justifyContent: "center"}}>
                     <div>
-                        <Link href="/post-table-total">
+                        <Link href="/post/table/total">
                             <Button variant="outline-secondary" className="mx-2">
                                 전체 목록
                             </Button>

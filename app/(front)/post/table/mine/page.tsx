@@ -50,7 +50,7 @@ function UserPosts() {
 
     const postSubmit = async () => {
         try {
-            const response = await fetch(`api/post/myTable/${storedSession.user.id}?page=${currentPage}`, {
+            const response = await fetch(`/api/post/myTable/${storedSession.user.id}?page=${currentPage}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -58,7 +58,6 @@ function UserPosts() {
                 },
             });
             const data = await response.json();
-
             if (response.ok) {
                 console.log('GET request successful');
                 setData(data);
@@ -102,7 +101,7 @@ function UserPosts() {
                     <tr key={item.id}>
                         <td>{item.id}</td>
                         <td className="td-title">
-                            <Link href={`/post-read-mine/${item.id}`}><button className="text-black">{item.title}</button></Link>
+                            <Link href={`/post/read/mine/${item.id}`}><button className="text-black">{item.title}</button></Link>
                             </td>
                         <td>{item.author.name}</td>
                         <td>{item.createdAt.substring(0, 10)}</td>

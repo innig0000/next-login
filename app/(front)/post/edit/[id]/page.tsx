@@ -98,7 +98,7 @@ const EditPost = ({ params }: { params: { id: string } }) => {
             if (response.ok) {
                 console.log("Edit successful");
                 setShow(false);
-             router.push(`/post-read-mine/${id}`)
+             router.push(`/post/read/mine/${id}`)
             } else {
                 console.error("Edit failed");
                 showAlertWithText("글 수정에 실패했습니다.")

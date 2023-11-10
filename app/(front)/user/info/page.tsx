@@ -1,7 +1,7 @@
 'use client'
 import React, {useEffect, useState} from "react";
 import {useSession} from "next-auth/react";
-import Top from "../components/Top";
+import Top from "../../../components/Top";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Table, Alert} from "react-bootstrap";
 

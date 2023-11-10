@@ -61,7 +61,7 @@ const Posts = ({ params }: { params: { id: string } }) => {
 
             if (Response.ok) {
                 console.log('DELETE request successful');
-                router.push("/post-table-mine");
+                router.push("/post/table/mine");
             } else {
                 console.error('DELETE request failed');
             }
@@ -103,7 +103,7 @@ const Posts = ({ params }: { params: { id: string } }) => {
 
                 <div style={{ display: "flex", justifyContent: "center"}}>
                         <div>
-                        <Link href="/post-table-mine">
+                        <Link href="/post/table/mine">
                             <Button variant="outline-secondary" className="mx-2">
                                 내 글 목록
                             </Button>
@@ -112,7 +112,7 @@ const Posts = ({ params }: { params: { id: string } }) => {
                 {session && session.user.name === data.author.name && (
                     <div>
                         <div>
-                    <Link href={`/post-edit/${id}`}>
+                    <Link href={`/post/edit/${id}`}>
                         <Button variant="outline-warning" className="mx-2">
                         수정
                     </Button>
